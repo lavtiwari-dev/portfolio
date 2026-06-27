@@ -1,0 +1,207 @@
+@use 'variables' as *;
+
+// ─── Reset ───────────────────────────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--tab-h);
+}
+
+body {
+  position: relative;
+  background: var(--bg);
+  color: var(--text);
+  font-family: $sans;
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  transition: background var(--transition), color var(--transition);
+}
+
+// ─── @font-face preconnects are handled in index.html ────────────────────────
+
+// ─── Scrollbar ───────────────────────────────────────────────────────────────
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-alt); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+// ─── Focus ring ──────────────────────────────────────────────────────────────
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+// ─── Selection ───────────────────────────────────────────────────────────────
+::selection { background: var(--accent); color: var(--bg); }
+
+// ─── Links ───────────────────────────────────────────────────────────────────
+a { color: var(--blue); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--accent); }
+
+// ─── Container ───────────────────────────────────────────────────────────────
+.container {
+  max-width: var(--max-w);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+// ─── Section wrapper ─────────────────────────────────────────────────────────
+.section {
+  padding: 88px 0;
+  position: relative;
+
+  @media (max-width: 760px) {
+    padding: 48px 0;
+  }
+}
+
+// ─── Main content layout offset ──────────────────────────────────────────────
+.main-content {
+  padding-left: var(--gutter-w);
+  padding-top: var(--tab-h);
+  transition: padding-left var(--transition);
+
+  @media (max-width: 760px) {
+    padding-left: 0;
+  }
+}
+
+// ─── Section heading ─────────────────────────────────────────────────────────
+.section-title {
+  font-family: $mono;
+  font-size: clamp(22px, 3vw, 30px);
+  color: var(--text);
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @media (max-width: 760px) {
+    margin-bottom: 24px;
+  }
+
+  &::before {
+    content: attr(data-prefix);
+    color: var(--mauve);
+    font-size: 0.8em;
+  }
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-left: 16px;
+  }
+}
+
+// ─── Tag pill ────────────────────────────────────────────────────────────────
+.tag {
+  font-family: $mono;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--mauve);
+  cursor: default;
+  transition: all var(--transition);
+  white-space: nowrap;
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(137, 180, 250, 0.15);
+  }
+}
+
+// ─── Button ──────────────────────────────────────────────────────────────────
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $mono;
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+  position: relative;
+
+  // Hover catcher to extend hover active region and prevent translation flickering
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -4px -4px -8px -4px;
+    background: transparent;
+    z-index: 1;
+  }
+
+  // Ensure icon and text render on top of the hover catcher
+  & > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  &--primary {
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+
+    &::after {
+      content: '█';
+      display: inline-block;
+      font-size: 11px;
+      margin-left: 6px;
+      color: var(--bg);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 24px rgba(137, 180, 250, 0.45);
+      color: var(--bg);
+
+      &::after {
+        opacity: 1;
+        animation: cursor-blink-btn 0.8s step-end infinite;
+      }
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    color: var(--accent);
+    font-weight: 600;
+
+    &:hover {
+      background: rgba(137, 180, 250, 0.08);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(137, 180, 250, 0.2);
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    border-color: transparent;
+    color: var(--muted);
+    &:hover { color: var(--text); }
+  }
+}
+
+@keyframes cursor-blink-btn {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+// ─── Reduced motion ──────────────────────────────────────────────────────────
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

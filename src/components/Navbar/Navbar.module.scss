@@ -1,0 +1,205 @@
+@use '../../styles/variables' as *;
+
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+  height: var(--tab-h);
+  display: flex;
+  align-items: stretch;
+
+  // ── Brand ────────────────────────────────────────────────────────────────
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 14px;
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
+    user-select: none;
+
+    @media (max-width: 760px) {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-right: none;
+      padding: 0;
+    }
+  }
+
+  // ── Mobile brand title (hidden on desktop) ───────────────────────────────
+  &__mobile_title {
+    display: none;
+
+    @media (max-width: 760px) {
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-family: $mono;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+  }
+
+
+
+  // ── Tabs row ─────────────────────────────────────────────────────────────
+  &__tabs {
+    display: flex;
+    align-items: stretch;
+    flex: 1;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  &__tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px;
+    font-family: $mono;
+    font-size: 11.5px;
+    color: var(--muted);
+    border-right: 1px solid var(--border);
+    border-top: none;
+    border-bottom: none;
+    background: transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background var(--transition), color var(--transition);
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+
+    &_icon {
+      font-size: 11px;
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+    &_label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      color: var(--text);
+      background: var(--panel);
+    }
+
+    &--active {
+      color: var(--accent);
+      background: var(--bg);
+      font-weight: 600;
+    }
+  }
+
+  &__active_indicator {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    z-index: 2;
+  }
+
+  // ── Actions (theme + hamburger) ───────────────────────────────────────────
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 10px;
+    border-left: 1px solid var(--border);
+    flex-shrink: 0;
+
+    @media (max-width: 760px) {
+      position: absolute;
+      left: 0; right: 0; top: 0; bottom: 0;
+      padding: 0 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: none;
+      pointer-events: none;
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__theme_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 14px;
+    transition: all var(--transition);
+    pointer-events: auto;
+
+    &:hover { color: var(--text); background: var(--panel); border-color: var(--accent); }
+  }
+
+  &__hamburger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 30px; height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 16px;
+    transition: all var(--transition);
+    pointer-events: auto;
+
+    &:hover { background: var(--panel); }
+  }
+
+  // ── Mobile dropdown ───────────────────────────────────────────────────────
+  &__mobile_menu {
+    position: fixed;
+    top: var(--tab-h);
+    left: 0; right: 0;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 0;
+    z-index: 999;
+  }
+
+  &__mobile_tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 24px;
+    font-family: $mono;
+    font-size: 13px;
+    color: var(--muted);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-left: 3px solid transparent;
+    text-align: left;
+    transition: all var(--transition);
+
+    &:hover { color: var(--text); background: var(--panel); }
+    &--active { color: var(--accent); border-left-color: var(--accent); background: var(--panel); }
+  }
+}
+
+// ── Responsive ─────────────────────────────────────────────────────────────
+@media (max-width: 760px) {
+  .navbar__tabs      { display: none; }
+  .navbar__hamburger { display: flex; }
+}

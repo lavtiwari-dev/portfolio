@@ -1,0 +1,352 @@
+@use '../../styles/variables' as *;
+
+.certs {
+
+  // ── 4-column card grid ────────────────────────────────────────────────────
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+  }
+
+  // ── Individual card ───────────────────────────────────────────────────────
+  &__card {
+    container-type: inline-size;
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+    // Glowing left accent bar (color injected inline)
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--cert-color, var(--accent));
+      border-radius: 4px 0 0 4px;
+    }
+
+    // Subtle top-right glow blob
+    &::after {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: var(--cert-color, var(--accent));
+      opacity: 0.06;
+      filter: blur(24px);
+      pointer-events: none;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+      border-color: var(--cert-color, var(--accent));
+    }
+  }
+
+  // ── Badge image preview ──────────────────────────────────────────────────
+  &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0 6px;
+    cursor: zoom-in;
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 12px;
+      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.5));
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+    }
+  }
+
+  &__card:hover &__image img {
+    transform: scale(1.05);
+    filter: drop-shadow(0 10px 24px rgba(0,0,0,0.6));
+  }
+
+  // ── Top row: icon + year badge ────────────────────────────────────────────
+  &__card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  // Big issuer monogram icon
+  &__icon {
+    width: 52px; height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $mono;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+    border: 1px solid;
+    // background/color/border-color injected inline
+  }
+
+  // Year ribbon
+  &__year {
+    font-family: $mono;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    background: var(--panel-alt);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  // ── Body ──────────────────────────────────────────────────────────────────
+  &__card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  &__issuer {
+    font-family: $mono;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  // ── Footer: passed check + verify ─────────────────────────────────────────
+  &__card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+
+    @container (max-width: 255px) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+  }
+
+  &__passed {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: $mono;
+    font-size: 11px;
+    color: var(--green);
+
+    svg { font-size: 13px; }
+  }
+
+  &__verify {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: $mono;
+    font-size: 11px;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--panel-alt);
+    color: var(--text);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all var(--transition);
+
+    &:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--bg);
+      transform: translateY(-1px);
+    }
+    svg { font-size: 12px; }
+
+    @container (max-width: 255px) {
+      width: 100%;
+      flex-grow: 1;
+      margin-top: 4px;
+    }
+  }
+
+  // ── Lightbox Modal ────────────────────────────────────────────────────────
+  &__lightbox {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 12, 0.85);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    cursor: zoom-out;
+  }
+
+  &__lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+
+    img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.8);
+      border: 1px solid var(--border);
+    }
+  }
+
+  &__lightbox-close {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all var(--transition);
+    backdrop-filter: blur(4px);
+
+    &:hover {
+      opacity: 1;
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    @media (max-width: 576px) {
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      font-size: 20px;
+    }
+  }
+
+  &__lightbox-caption {
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  @media (max-width: 480px) {
+    &__card {
+      padding: 10px 8px;
+      gap: 8px;
+      border-radius: 8px;
+    }
+
+    &__image {
+      padding: 6px 0 4px;
+
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+      }
+    }
+
+    &__icon {
+      width: 34px;
+      height: 34px;
+      font-size: 10px;
+      border-radius: 8px;
+    }
+
+    &__year {
+      font-size: 8px;
+      padding: 2px 6px;
+    }
+
+    &__name {
+      font-size: 11px;
+      line-height: 1.3;
+    }
+
+    &__issuer {
+      font-size: 9px;
+    }
+
+    &__card-footer {
+      padding-top: 8px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+    }
+
+    &__passed {
+      font-size: 9px;
+      justify-content: center;
+
+      svg {
+        font-size: 10px;
+      }
+    }
+
+    &__verify {
+      font-size: 9px;
+      padding: 4px 6px;
+      border-radius: 4px;
+      
+      svg {
+        font-size: 10px;
+      }
+    }
+  }
+}

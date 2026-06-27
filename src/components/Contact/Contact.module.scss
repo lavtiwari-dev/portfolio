@@ -1,0 +1,203 @@
+@use '../../styles/variables' as *;
+
+.contact {
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  // ── Left ──────────────────────────────────────────────────────────────────
+  &__info {
+    .invite {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+  }
+
+  &__detail {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+
+    &:first-of-type { border-top: 1px solid var(--border); }
+
+    .icon_wrap {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 15px;
+    }
+    .label {
+      font-family: $mono;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .value {
+      font-size: 14px;
+      color: var(--text);
+    }
+    .copy_btn {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: $mono;
+      font-size: 11px;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 8px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all var(--transition);
+
+      &:hover { color: var(--accent); border-color: var(--accent); }
+      &--copied { color: var(--green); border-color: var(--green); opacity: 1 !important; }
+    }
+
+    &:hover {
+      .copy_btn {
+        opacity: 1;
+      }
+    }
+  }
+
+  // ── Right — Terminal form ─────────────────────────────────────────────────
+  &__form-wrap {
+    background: var(--term-bg);
+    border: 1px solid var(--term-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--term-shadow);
+    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+  }
+
+  &__form-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: var(--term-bg-alt);
+    border-bottom: 1px solid var(--term-border);
+    transition: background var(--transition), border-color var(--transition);
+
+    .dot {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      &.red   { background: #f38ba8; }
+      &.yellow{ background: #f9e2af; }
+      &.green { background: #a6e3a1; }
+    }
+    span {
+      font-family: $mono;
+      font-size: 11px;
+      color: var(--term-muted);
+      margin-left: auto;
+    }
+  }
+
+  &__form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--term-bg);
+    transition: background var(--transition);
+
+    .prompt_line {
+      font-family: $mono;
+      font-size: 12px;
+      color: var(--term-blue);
+      margin-bottom: -6px;
+    }
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    label {
+      font-family: $mono;
+      font-size: 11px;
+      color: var(--term-muted);
+    }
+
+    input, textarea {
+      background: var(--term-bg-alt);
+      border: 1px solid var(--term-border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      color: var(--term-text);
+      font-family: $mono;
+      font-size: 13px;
+      transition: background var(--transition), border-color var(--transition), color var(--transition);
+      outline: none;
+      resize: vertical;
+
+      &:focus { border-color: var(--accent); }
+      &::placeholder { color: var(--term-muted); opacity: 0.6; }
+    }
+
+    textarea { min-height: 100px; }
+  }
+
+  &__submit {
+    font-family: $mono;
+    font-size: 13px;
+    padding: 11px 20px;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all var(--transition);
+
+    &:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(137,180,250,0.3); }
+    &:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  }
+
+  &__success {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    background: rgba(166, 227, 161, 0.08);
+    border: 1px solid rgba(166, 227, 161, 0.3);
+    border-radius: 6px;
+    font-family: $mono;
+    font-size: 13px;
+    color: var(--green);
+  }
+
+  &__error {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(243, 139, 168, 0.08);
+    border: 1px solid rgba(243, 139, 168, 0.35);
+    border-radius: 6px;
+    font-family: $mono;
+    font-size: 12.5px;
+    color: var(--pink);
+  }
+}
+
+@media (max-width: 760px) {
+  .contact__grid { grid-template-columns: 1fr; }
+}

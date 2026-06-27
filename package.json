@@ -1,0 +1,22 @@
+{
+  "name": "po3",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.1.0"
+  },
+  "dependencies": {
+    "framer-motion": "^12.42.0",
+    "react-icons": "^5.6.0",
+    "react-intersection-observer": "^10.0.3",
+    "react-scroll": "^1.9.3",
+    "react-type-animation": "^3.2.0",
+    "sass": "^1.101.0"
+  }
+}

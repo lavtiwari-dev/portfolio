@@ -1,0 +1,109 @@
+@use '../../styles/variables' as *;
+
+.skills {
+  &__groups {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__group {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+    &:hover {
+      border-color: var(--accent);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 1px 1px var(--accent);
+      transform: translateY(-2px);
+    }
+  }
+
+  &__group-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: var(--panel-alt);
+    border-bottom: 1px solid var(--border);
+    font-family: $mono;
+    font-size: 13px;
+
+    .icon {
+      color: var(--accent);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .file {
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: -0.2px;
+    }
+
+    .count {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 11px;
+      padding: 2px 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+  }
+
+  &__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+  }
+
+  &__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--panel-alt);
+    font-family: $mono;
+    font-size: 12px;
+    color: var(--muted);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+
+    &_icon {
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+      color: var(--skill-color);
+      transition: transform 0.25s ease;
+    }
+
+    &_name {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    &:hover {
+      color: var(--text);
+      border-color: var(--skill-color);
+      background: var(--skill-bg-hover);
+      box-shadow: 0 4px 12px var(--skill-shadow);
+
+      .skills__pill_icon {
+        transform: scale(1.2) rotate(6deg);
+      }
+    }
+  }
+}

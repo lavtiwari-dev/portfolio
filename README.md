@@ -1,4 +1,4 @@
-# 📚 Personal Portfolio (po3)
+# 📚 Personal Portfolio
 
 Welcome to **po3**, a sleek, modern personal portfolio built with **React**, **Vite**, and **Framer Motion**. This project showcases certifications, skills, projects, and more, with a premium design that adapts beautifully to every screen size.
 

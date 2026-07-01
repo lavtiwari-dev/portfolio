@@ -54,7 +54,7 @@ export default function Contact() {
 
     setSending(true);
     
-    // Simulate brief processing before redirecting to the email client
+    // Briefly show progress before opening a pre-filled draft in the visitor's mail app.
     await new Promise(r => setTimeout(r, 600));
     
     const subject = encodeURIComponent(`Message from ${form.name.trim()} (via Portfolio)`);
@@ -149,7 +149,7 @@ export default function Contact() {
               {sent ? (
                 <div style={{ padding: 20 }}>
                   <div className={styles.contact__success}>
-                    <FiCheck /> Message sent! I'll reply within 24 hours.
+                    <FiCheck /> Email draft opened. Send it from your mail app to finish.
                   </div>
                 </div>
               ) : (
@@ -203,7 +203,7 @@ export default function Contact() {
                     disabled={sending}
                   >
                     <FiSend />
-                    {sending ? 'Sending...' : '$ send --execute'}
+                    {sending ? 'Opening email...' : '$ send --execute'}
                   </button>
                 </form>
               )}

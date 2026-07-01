@@ -15,14 +15,24 @@ export default function Loader({ onComplete }) {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      onComplete();
+      return undefined;
+    }
+
+    let completeTimer;
     const timers = lines.map((l, i) =>
       setTimeout(() => setVisible(v => [...v, i]), l.delay)
     );
     const finish = setTimeout(() => {
       setDone(true);
-      setTimeout(onComplete, 400);
+      completeTimer = setTimeout(onComplete, 400);
     }, 1350);
-    return () => { timers.forEach(clearTimeout); clearTimeout(finish); };
+    return () => {
+      timers.forEach(clearTimeout);
+      clearTimeout(finish);
+      clearTimeout(completeTimer);
+    };
   }, [onComplete]);
 
   return (
@@ -30,6 +40,9 @@ export default function Loader({ onComplete }) {
       {!done && (
         <motion.div
           className={styles.loader}
+          role="status"
+          aria-live="polite"
+          aria-label="Loading portfolio"
           exit={{ opacity: 0, scale: 0.98 }}
           transition={{ duration: 0.55, ease: 'easeInOut' }}
         >

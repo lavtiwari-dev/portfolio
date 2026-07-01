@@ -13,7 +13,21 @@
     }
 
     @media (max-width: 640px) {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 0;
+      margin-left: -12px;
+      margin-right: -12px;
+      padding-left: 12px;
+      padding-right: 12px;
+      
+      &::-webkit-scrollbar { display: none; }
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   }
 
@@ -24,13 +38,25 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: all 0.28s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: default;
 
     &:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.3), 0 0 0 1px var(--accent);
+      transform: translateY(-6px);
+      border-color: rgba(137, 180, 250, 0.5);
+      box-shadow: 
+        0 20px 38px rgba(0, 0, 0, 0.45), 
+        0 0 25px rgba(137, 180, 250, 0.12);
+    }
+
+    @media (max-width: 640px) {
+      flex: 0 0 calc(100% - 16px);
+      margin-right: 16px;
+      scroll-snap-align: center;
+
+      &:last-child {
+        margin-right: 0;
+      }
     }
   }
 
@@ -38,14 +64,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 18px;
+    padding: 15px 22px;
     background: var(--panel-alt);
     border-bottom: 1px solid var(--border);
+
+    @media (max-width: 640px) {
+      padding: 10px 14px;
+    }
   }
 
   &__filename {
     font-family: $mono;
-    font-size: 11.5px;
+    font-size: 12.5px;
     color: var(--muted);
     display: flex;
     align-items: center;
@@ -56,8 +86,8 @@
 
   &__badge {
     font-family: $mono;
-    font-size: 9.5px;
-    padding: 2px 8px;
+    font-size: 10.5px;
+    padding: 3px 10px;
     border-radius: 10px;
     font-weight: 600;
     text-transform: uppercase;
@@ -71,49 +101,83 @@
   &__preview {
     position: relative;
     width: 100%;
-    height: 160px;
+    height: 185px;
     overflow: hidden;
+    background: var(--panel-alt);
+
+    @media (max-width: 640px) {
+      height: 150px;
+    }
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: top;
-      transition: transform 0.5s ease;
+      object-fit: contain;
+      object-position: center;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
   }
 
   &__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 40%, var(--panel) 100%);
+    background: linear-gradient(to bottom, rgba(39, 39, 58, 0) 50%, rgba(39, 39, 58, 0.6) 100%);
     pointer-events: none;
+    transition: opacity 0.3s ease;
   }
 
   &__card {
-    &:hover .projects__preview img { transform: scale(1.04); }
+    &:hover .projects__preview img { transform: scale(1.05); }
   }
 
   &__card-body {
-    padding: 18px 20px;
+    padding: 22px 24px;
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+
+    @media (max-width: 640px) {
+      padding: 14px 16px;
+      gap: 8px;
+    }
   }
 
   &__title {
     font-family: $mono;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 700;
     color: var(--text);
+
+    @media (max-width: 640px) {
+      font-size: 13.5px;
+    }
   }
 
   &__desc {
-    font-size: 13px;
+    font-size: 13.5px;
     color: var(--muted);
     line-height: 1.55;
     flex: 1;
+
+    @media (max-width: 640px) {
+      font-size: 11.5px;
+    }
+  }
+
+  &__metric {
+    padding: 8px 10px;
+    border-left: 2px solid var(--green);
+    background: rgba(166, 227, 161, 0.06);
+    color: var(--text);
+    font-family: $mono;
+    font-size: 10.5px;
+    line-height: 1.5;
+
+    @media (max-width: 640px) {
+      font-size: 9.5px;
+      padding: 6px 8px;
+    }
   }
 
   &__stack {
@@ -126,29 +190,48 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 20px;
+    padding: 15px 24px;
     border-top: 1px solid var(--border);
 
-    a {
+    @media (max-width: 640px) {
+      padding: 10px 14px;
+    }
+
+    a,
+    .projects__link_unavailable {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       font-family: $mono;
-      font-size: 11px;
-      padding: 6px 12px;
+      font-size: 12px;
+      padding: 8px 16px;
       border: 1px solid var(--border);
       border-radius: 6px;
       background: var(--panel-alt);
       color: var(--text);
       transition: all var(--transition);
 
+      svg { font-size: 12px; }
+
+      @media (max-width: 640px) {
+        font-size: 9.5px;
+        padding: 5px 9px;
+      }
+    }
+
+    a {
       &:hover {
         color: var(--accent);
         border-color: var(--accent);
         background: var(--bg);
         transform: translateY(-1px);
       }
-      svg { font-size: 12px; }
+    }
+
+    .projects__link_unavailable {
+      color: var(--muted);
+      cursor: default;
+      opacity: 0.72;
     }
   }
 
@@ -157,6 +240,11 @@
     flex-direction: column;
     flex: 1;
     cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
   }
 
   // ── Details Popup Modal ───────────────────────────────────────────────────
@@ -221,17 +309,18 @@
 
   &__popup-image {
     width: 100%;
-    height: 220px;
+    height: 280px;
     border-radius: 8px;
     overflow: hidden;
     position: relative;
     flex-shrink: 0;
+    background: var(--panel-alt);
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: top;
+      object-fit: contain;
+      object-position: center;
     }
   }
 
@@ -296,6 +385,12 @@
     border-top: 1px solid var(--border);
     background: var(--panel-alt);
     justify-content: flex-end;
+  }
+
+  &__popup_unavailable {
+    font-family: $mono;
+    font-size: 11px;
+    color: var(--muted);
   }
 
   // ── Dynamic Filters ────────────────────────────────────────────────────────
@@ -464,6 +559,35 @@
 
     .number {
       color: var(--peach) !important;
+    }
+  }
+
+  &__indicators {
+    display: none;
+
+    @media (max-width: 640px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+  }
+
+  &__indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all var(--transition);
+
+    &--active {
+      background: var(--accent);
+      transform: scale(1.3);
+      box-shadow: 0 0 8px var(--accent);
     }
   }
 }

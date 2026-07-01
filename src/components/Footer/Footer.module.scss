@@ -31,6 +31,18 @@
 }
 
 @media (max-width: 760px) {
-  .footer { padding-left: 12px; }
-  .footer__right { display: none; }
+  .footer { 
+    padding: 0 12px;
+    font-size: 10px;
+  }
+  .footer__right {
+    display: flex;
+    gap: 8px;
+
+    // Hide LF/UTF-8 labels and separators on mobile to prevent clutter
+    .footer__item:not(:last-child),
+    .footer__sep {
+      display: none;
+    }
+  }
 }

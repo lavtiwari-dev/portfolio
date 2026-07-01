@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { motion } from 'framer-motion';
 import Loader from './components/Loader/Loader';
 import Navbar from './components/Navbar/Navbar';
 import LineGutter from './components/LineGutter/LineGutter';
@@ -14,22 +13,19 @@ import Footer from './components/Footer/Footer';
 import BackToTop from './components/BackToTop/BackToTop';
 import './styles/global.scss';
 
-const SECTIONS = ['hero', 'about', 'skills', 'projects', 'certifications', 'education', 'contact'];
+const SECTIONS = ['hero', 'about', 'projects', 'skills', 'certifications', 'education', 'contact'];
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
-  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
   const [activeSection, setActiveSection] = useState('hero');
-  const [transitionTheme, setTransitionTheme] = useState(null);
 
   const lockRef = useRef(false);
   const timeoutRef = useRef(null);
 
   // Apply theme
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }, []);
 
   // Handle active section change when tab is clicked
   const handleSectionChange = useCallback((id) => {
@@ -82,12 +78,7 @@ export default function App() {
     };
   }, [loaded]);
 
-  const toggleTheme = useCallback((e) => {
-    const x = e ? e.clientX : window.innerWidth / 2;
-    const y = e ? e.clientY : window.innerHeight / 2;
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    setTransitionTheme({ x, y, theme: nextTheme });
-  }, [theme]);
+
 
   return (
     <>
@@ -95,20 +86,19 @@ export default function App() {
 
       {loaded && (
         <>
+          <a className="skip-link" href="#main-content">Skip to content</a>
           <Navbar
             activeSection={activeSection}
-            theme={theme}
-            onThemeToggle={toggleTheme}
             onSectionChange={handleSectionChange}
           />
           <LineGutter activeSection={activeSection} />
 
           {/* Main content — responsive class for padding */}
-          <main className="main-content">
+          <main id="main-content" className="main-content" tabIndex="-1">
             <Hero onSectionChange={handleSectionChange} />
             <About />
-            <Skills />
             <Projects />
+            <Skills />
             <Certifications />
             <Education />
             <Contact />
@@ -116,24 +106,7 @@ export default function App() {
 
           <Footer />
           <BackToTop />
-          {transitionTheme && (
-            <motion.div
-              style={{
-                position: 'fixed',
-                top: 0, left: 0, right: 0, bottom: 0,
-                zIndex: 99999,
-                background: transitionTheme.theme === 'light' ? '#fafafa' : '#1e1e2e',
-                pointerEvents: 'none',
-              }}
-              initial={{ clipPath: `circle(0px at ${transitionTheme.x}px ${transitionTheme.y}px)` }}
-              animate={{ clipPath: `circle(150% at ${transitionTheme.x}px ${transitionTheme.y}px)` }}
-              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              onAnimationComplete={() => {
-                setTheme(transitionTheme.theme);
-                setTransitionTheme(null);
-              }}
-            />
-          )}
+
         </>
       )}
     </>

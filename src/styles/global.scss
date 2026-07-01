@@ -1,7 +1,13 @@
 @use 'variables' as *;
 
 // ─── Reset ───────────────────────────────────────────────────────────────────
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 html {
   scroll-behavior: smooth;
@@ -11,31 +17,94 @@ html {
 body {
   position: relative;
   background: var(--bg);
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center;
   color: var(--text);
   font-family: $sans;
   font-size: 15px;
   line-height: 1.65;
   overflow-x: hidden;
   transition: background var(--transition), color var(--transition);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 700px;
+    background: radial-gradient(circle at 50% 0%, var(--glow-color) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+  }
 }
 
 // ─── @font-face preconnects are handled in index.html ────────────────────────
 
 // ─── Scrollbar ───────────────────────────────────────────────────────────────
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-alt); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
 
 // ─── Focus ring ──────────────────────────────────────────────────────────────
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
 
 // ─── Selection ───────────────────────────────────────────────────────────────
-::selection { background: var(--accent); color: var(--bg); }
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
 
 // ─── Links ───────────────────────────────────────────────────────────────────
-a { color: var(--blue); text-decoration: none; transition: color var(--transition); }
-a:hover { color: var(--accent); }
+a {
+  color: var(--blue);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 10000;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--bg);
+  font-family: $mono;
+  font-size: 12px;
+  font-weight: 700;
+  transform: translateY(-150%);
+  transition: transform var(--transition);
+
+  &:focus {
+    color: var(--bg);
+    transform: translateY(0);
+  }
+}
 
 // ─── Container ───────────────────────────────────────────────────────────────
 .container {
@@ -51,7 +120,7 @@ a:hover { color: var(--accent); }
   position: relative;
 
   @media (max-width: 760px) {
-    padding: 48px 0;
+    padding: 36px 0;
   }
 }
 
@@ -60,6 +129,10 @@ a:hover { color: var(--accent); }
   padding-left: var(--gutter-w);
   padding-top: var(--tab-h);
   transition: padding-left var(--transition);
+
+  &:focus {
+    outline: none;
+  }
 
   @media (max-width: 760px) {
     padding-left: 0;
@@ -77,7 +150,7 @@ a:hover { color: var(--accent); }
   gap: 12px;
 
   @media (max-width: 760px) {
-    margin-bottom: 24px;
+    margin-bottom: 18px;
   }
 
   &::before {
@@ -85,6 +158,7 @@ a:hover { color: var(--accent); }
     color: var(--mauve);
     font-size: 0.8em;
   }
+
   &::after {
     content: '';
     flex: 1;
@@ -113,22 +187,32 @@ a:hover { color: var(--accent); }
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(137, 180, 250, 0.15);
   }
+
+  @media (max-width: 600px) {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
 }
 
 // ─── Button ──────────────────────────────────────────────────────────────────
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: clamp(6px, 0.8vw, 8px);
   font-family: $mono;
-  font-size: 13px;
-  padding: 10px 20px;
+  font-size: clamp(12px, 1.2vw, 13px);
+  padding: clamp(8px, 1vw, 10px) clamp(16px, 2vw, 20px);
   border-radius: var(--radius);
   border: 1px solid transparent;
   cursor: pointer;
   transition: all var(--transition);
   text-decoration: none;
   position: relative;
+
+  @media (max-width: 600px) {
+    font-size: 11px;
+    padding: 7px 14px;
+  }
 
   // Hover catcher to extend hover active region and prevent translation flickering
   &::before {
@@ -140,7 +224,7 @@ a:hover { color: var(--accent); }
   }
 
   // Ensure icon and text render on top of the hover catcher
-  & > * {
+  &>* {
     position: relative;
     z-index: 2;
   }
@@ -192,16 +276,32 @@ a:hover { color: var(--accent); }
     background: transparent;
     border-color: transparent;
     color: var(--muted);
-    &:hover { color: var(--text); }
+
+    &:hover {
+      color: var(--text);
+    }
   }
 }
 
 @keyframes cursor-blink-btn {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 // ─── Reduced motion ──────────────────────────────────────────────────────────
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

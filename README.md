@@ -1,6 +1,6 @@
 # 📚 Personal Portfolio
 
-Welcome to **po3**, a sleek, modern personal portfolio built with **React**, **Vite**, and **Framer Motion**. This project showcases certifications, skills, projects, and more, with a premium design that adapts beautifully to every screen size.
+Welcome to **lav Portfolio**, a sleek, modern personal portfolio built with **React**, **Vite**, and **Framer Motion**. This project showcases certifications, skills, projects, and more, with a premium design that adapts beautifully to every screen size.
 
 ---
 
@@ -32,8 +32,8 @@ Welcome to **po3**, a sleek, modern personal portfolio built with **React**, **V
 ### Installation
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/po3.git
-cd po3
+git clone https://github.com/lavtiwari-dev/portfolio.git
+cd portfolio
 
 # Install dependencies
 npm install

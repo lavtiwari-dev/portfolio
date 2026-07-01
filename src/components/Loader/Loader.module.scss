@@ -35,7 +35,7 @@ $term-cursor:  #89b4fa;
   &__titlebar {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     padding: 10px 16px;
     background: $term-bg-alt;
     border-bottom: 1px solid $term-border;
@@ -47,7 +47,7 @@ $term-cursor:  #89b4fa;
       &.yellow{ background: #f9e2af; }
       &.green { background: #a6e3a1; }
     }
-    span {
+    span:not(.dot) {
       font-family: $mono;
       font-size: 11px;
       color: $term-muted;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  FiGithub, FiLinkedin, FiTwitter, FiMail,
+  FiGithub, FiMail, FiLinkedin,
   FiArrowDown, FiDownload, FiMessageCircle
 } from 'react-icons/fi';
 import styles from './Hero.module.scss';
@@ -119,10 +119,10 @@ const totalChars = globalOffset;
 
 function TypingCommand({ command, onComplete }) {
   const [text, setText] = useState('');
-  
+
   useEffect(() => {
     let intervalId = null;
-    
+
     const startTimeout = setTimeout(() => {
       let i = 0;
       intervalId = setInterval(() => {
@@ -224,18 +224,18 @@ function TypingTerminal() {
           <TypingCommand command="whoami" onComplete={() => setCommandComplete(true)} />
           {!commandComplete && <span className={styles['cursor-blink']} />}
         </div>
-        
+
         {commandComplete && (
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {linesWithOffsets.map((line, lineIdx) => {
               if (visibleChars < line.start) return null;
 
               return (
-                <div 
-                  key={lineIdx} 
-                  style={{ 
+                <div
+                  key={lineIdx}
+                  style={{
                     paddingLeft: line.indent ? line.indent * 12 : 0,
-                    lineHeight: 1.8 
+                    lineHeight: 1.8
                   }}
                 >
                   {line.segments.map((seg, segIdx) => {
@@ -286,26 +286,25 @@ export default function Hero({ onSectionChange }) {
             </motion.h1>
 
             <motion.p className={styles.hero__subtext} variants={fade}>
-              Computer Science &amp; Engineering student focused on Java, JavaScript, and React — 
+              Computer Science &amp; Engineering student focused on Java, JavaScript, and React —
               passionate about clean code, scalable APIs, and system optimization.
             </motion.p>
 
             <motion.div className={styles.hero__ctas} variants={fade}>
-              <a href="#projects" className="btn btn--primary" onClick={e => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior:'smooth' }); onSectionChange?.('projects'); }}>
+              <a href="#projects" className="btn btn--primary" onClick={e => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); onSectionChange?.('projects'); }}>
                 <FiArrowDown /> View projects
               </a>
               <a href="/resume.pdf" className="btn btn--outline" download>
                 <FiDownload /> Download résumé
               </a>
-              <a href="#contact" className="btn btn--ghost" onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior:'smooth' }); onSectionChange?.('contact'); }}>
+              <a href="#contact" className="btn btn--ghost" onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); onSectionChange?.('contact'); }}>
                 <FiMessageCircle /> Get in touch
               </a>
             </motion.div>
 
             <motion.div className={styles.hero__socials} variants={fade}>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={styles.github}><FiGithub /></a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={styles.linkedin}><FiLinkedin /></a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className={styles.twitter}><FiTwitter /></a>
+              <a href="https://github.com/lavtiwari-dev" target="_blank" rel="noopener noreferrer" aria-label="Lav Kumar on GitHub" className={styles.github}><FiGithub /></a>
+              <a href="https://www.linkedin.com/in/lavtiwaridev/" target="_blank" rel="noopener noreferrer" aria-label="Lav Kumar on LinkedIn" className={styles.linkedin}><FiLinkedin /></a>
               <a href="mailto:lavtiwari.dev@gmail.com" aria-label="Email" className={styles.mail}><FiMail /></a>
             </motion.div>
           </motion.div>

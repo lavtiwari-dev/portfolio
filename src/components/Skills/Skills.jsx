@@ -4,11 +4,11 @@ import {
   FaJava, FaReact, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaGithub, FaDatabase 
 } from 'react-icons/fa';
 import { 
-  SiJavascript, SiTailwindcss, SiExpress, SiMongodb, SiPostman 
+  SiJavascript, SiTailwindcss, SiExpress, SiMongodb, SiPostman, SiPostgresql
 } from 'react-icons/si';
 import { VscCode } from 'react-icons/vsc';
 import { DiMysql } from 'react-icons/di';
-import { FiMonitor, FiServer, FiTool, FiDatabase } from 'react-icons/fi';
+import { FiMonitor, FiServer, FiTool, FiDatabase, FiCpu } from 'react-icons/fi';
 import { TbBinaryTree, TbSettingsCog, TbDatabase, TbTerminal } from 'react-icons/tb';
 import styles from './Skills.module.scss';
 
@@ -70,7 +70,7 @@ const groups = [
     ],
   },
   {
-    label: 'Backend & Databases',
+    label: 'Backend Development',
     file: 'backend.js',
     icon: <FiServer />,
     skills: [
@@ -94,7 +94,14 @@ const groups = [
         color: '#FF6C37',
         bgHover: 'rgba(255, 108, 55, 0.08)',
         shadow: 'rgba(255, 108, 55, 0.15)'
-      },
+      }
+    ],
+  },
+  {
+    label: 'Databases & Storage',
+    file: 'database.sql',
+    icon: <FiDatabase />,
+    skills: [
       {
         name: 'MongoDB',
         icon: <SiMongodb />,
@@ -108,6 +115,13 @@ const groups = [
         color: '#4479A1',
         bgHover: 'rgba(68, 121, 161, 0.08)',
         shadow: 'rgba(68, 121, 161, 0.15)'
+      },
+      {
+        name: 'PostgreSQL',
+        icon: <SiPostgresql />,
+        color: '#336791',
+        bgHover: 'rgba(51, 103, 145, 0.08)',
+        shadow: 'rgba(51, 103, 145, 0.15)'
       }
     ],
   },
@@ -149,7 +163,7 @@ const groups = [
   {
     label: 'Core Computer Science',
     file: 'core_cs.py',
-    icon: <FiDatabase />,
+    icon: <FiCpu />,
     skills: [
       {
         name: 'Data Structures & Algorithms',
@@ -216,7 +230,7 @@ export default function Skills() {
   return (
     <section id="skills" className={`section ${styles.skills}`} ref={ref}>
       <div className="container">
-        <h2 className="section-title" data-prefix="03">skills.json</h2>
+        <h2 className="section-title" data-prefix="04">skills.json</h2>
         <motion.div
           className={styles.skills__groups}
           variants={containerVariants}

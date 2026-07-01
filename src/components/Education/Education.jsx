@@ -6,23 +6,18 @@ const education = [
   {
     degree: 'Bachelor of Technology in Computer Science & Engineering',
     institution: 'Technocrats Institute of Technology – Excellence, Bhopal',
-    years: 'Expected 2027',
+    years: '2023 - 2027',
     gpa: 'CGPA: 7.7',
-    notes: 'Pre-final year undergraduate student building a strong foundation in Data Structures & Algorithms, Object-Oriented Programming (OOP), Database Management Systems (DBMS), and Operating Systems.',
   },
   {
     degree: 'Senior Secondary School (BSEB)',
-    institution: 'Gandak High School, Tarwara',
-    years: '2023',
-    gpa: '',
-    notes: 'Completed senior secondary school with a focus on science stream.',
+    institution: 'Gandak High School, Tarwara, Siwan (Bihar)',
+    years: '2021 - 2023',
   },
   {
     degree: 'Secondary School (BSEB)',
-    institution: 'Gandak High School, Tarwara',
-    years: '2021',
-    gpa: '',
-    notes: 'Completed secondary school with a strong foundation in mathematics and science.',
+    institution: 'Gandak High School, Tarwara, Siwan (Bihar)',
+    years: '2019 - 2021',
   },
 ];
 

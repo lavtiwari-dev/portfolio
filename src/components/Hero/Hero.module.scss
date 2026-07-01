@@ -1,13 +1,20 @@
 @use '../../styles/variables' as *;
 
 .hero {
-  min-height: 100vh;
+  min-height: 75vh;
   display: flex;
   align-items: center;
-  padding-top: 12px;
+  padding-top: 60px;
   padding-bottom: 60px;
   position: relative;
   overflow: hidden;
+
+  // Prevent huge vertical height in portrait viewports (e.g. mobile Chrome in Desktop site mode)
+  @media (max-aspect-ratio: 1/1) {
+    min-height: auto;
+    padding-top: clamp(80px, 10vh, 120px);
+    padding-bottom: clamp(60px, 8vh, 100px);
+  }
 
   // ambient glow blobs
   &::before,
@@ -38,8 +45,8 @@
 
   &__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(24px, 4vw, 48px);
     align-items: center;
     width: 100%;
   }
@@ -78,11 +85,11 @@
 
   &__headline {
     font-family: $mono;
-    font-size: clamp(28px, 4vw, 46px);
+    font-size: clamp(24px, 3.5vw, 48px);
     font-weight: 700;
     line-height: 1.2;
     color: var(--text);
-    margin-bottom: 20px;
+    margin-bottom: clamp(12px, 2vw, 20px);
 
     span {
       color: var(--accent);
@@ -90,18 +97,18 @@
   }
 
   &__subtext {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--muted);
-    max-width: 440px;
+    max-width: 580px;
     line-height: 1.7;
-    margin-bottom: 32px;
+    margin-bottom: clamp(16px, 3vw, 32px);
   }
 
   &__ctas {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 40px;
+    gap: clamp(8px, 1.2vw, 12px);
+    margin-bottom: clamp(20px, 4vw, 40px);
   }
 
   &__socials {
@@ -177,7 +184,7 @@
   // ── Terminal window ──────────────────────────────────────────────────────
   &__terminal {
     width: 100%;
-    max-width: 540px;
+    max-width: 620px;
     background: var(--term-bg);
     border: 1px solid var(--term-border);
     border-radius: var(--radius);
@@ -222,9 +229,9 @@
   }
 
   &__term-body {
-    padding: 20px;
+    padding: clamp(14px, 1.8vw, 20px);
     font-family: $mono;
-    font-size: 13.5px;
+    font-size: clamp(11.5px, 1.3vw, 13.5px);
     line-height: 1.8;
     min-height: 260px;
     color: var(--term-text);
@@ -318,9 +325,20 @@
     text-align: center;
   }
 
+  .hero__headline {
+    font-size: clamp(20px, 6vw, 30px);
+  }
+
   .hero__subtext {
+    font-size: 13px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .hero__eyebrow {
+    font-size: 10.5px;
+    padding: 3px 10px;
+    margin-bottom: 12px;
   }
 
   .hero__ctas {

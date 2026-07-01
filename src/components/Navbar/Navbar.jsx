@@ -1,23 +1,38 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FiCode, FiUser, FiDatabase, FiFolder,
-  FiAward, FiBook, FiTerminal, FiSun, FiMoon, FiMenu, FiX
+  FiAward, FiBook, FiTerminal, FiMenu, FiX
 } from 'react-icons/fi';
 import styles from './Navbar.module.scss';
 
 const tabs = [
   { id: 'hero',           label: 'Lav Kumar',         icon: <FiCode /> },
   { id: 'about',          label: 'about.js',          icon: <FiUser /> },
-  { id: 'skills',         label: 'skills.json',       icon: <FiDatabase /> },
   { id: 'projects',       label: 'projects/',         icon: <FiFolder /> },
-  { id: 'certifications', label: 'certs.md',          icon: <FiAward /> },
+  { id: 'skills',         label: 'skills.json',       icon: <FiDatabase /> },
+  { id: 'certifications', label: 'certifications.md',  icon: <FiAward /> },
   { id: 'education',      label: 'education.md',      icon: <FiBook /> },
   { id: 'contact',        label: 'contact.sh',        icon: <FiTerminal /> },
 ];
 
-export default function Navbar({ activeSection, theme, onThemeToggle, onSectionChange }) {
+export default function Navbar({ activeSection, onSectionChange }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const menuButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (!mobileOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setMobileOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileOpen]);
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -39,9 +54,11 @@ export default function Navbar({ activeSection, theme, onThemeToggle, onSectionC
         {tabs.map(t => (
           <button
             key={t.id}
+            type="button"
             className={`${styles.navbar__tab} ${activeSection === t.id ? styles['navbar__tab--active'] : ''}`}
             onClick={() => scrollTo(t.id)}
-            aria-current={activeSection === t.id ? 'page' : undefined}
+            aria-current={activeSection === t.id ? 'location' : undefined}
+            aria-label={`Go to ${t.label}`}
             style={{ position: 'relative' }}
           >
             {activeSection === t.id && (
@@ -59,20 +76,15 @@ export default function Navbar({ activeSection, theme, onThemeToggle, onSectionC
 
       {/* Actions */}
       <div className={styles.navbar__actions}>
-        <button
-          className={styles.navbar__theme_btn}
-          onClick={onThemeToggle}
-          aria-label="Toggle theme"
-        >
-          {theme === 'dark' ? <FiSun /> : <FiMoon />}
-        </button>
-
         {/* Mobile hamburger */}
         <button
+          ref={menuButtonRef}
+          type="button"
           className={styles.navbar__hamburger}
           onClick={() => setMobileOpen(o => !o)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
         >
           {mobileOpen ? <FiX /> : <FiMenu />}
         </button>
@@ -82,17 +94,20 @@ export default function Navbar({ activeSection, theme, onThemeToggle, onSectionC
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            id="mobile-navigation"
             className={styles.navbar__mobile_menu}
-            initial={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             {tabs.map(t => (
               <button
                 key={t.id}
+                type="button"
                 className={`${styles.navbar__mobile_tab} ${activeSection === t.id ? styles['navbar__mobile_tab--active'] : ''}`}
                 onClick={() => scrollTo(t.id)}
+                aria-current={activeSection === t.id ? 'location' : undefined}
               >
                 {t.icon}
                 {t.label}

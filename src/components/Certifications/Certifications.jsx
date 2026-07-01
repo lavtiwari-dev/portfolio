@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FiCheckCircle, FiExternalLink, FiX } from 'react-icons/fi';
@@ -10,18 +10,18 @@ const certs = [
     issuer: 'LeetCode, CodeChef & HackerEarth',
     year: 'Active',
     link: 'https://leetcode.com',
-    image: '/images/cert-badges.png',
+    image: '/images/cert-leetcode-dsa.png',
     monogram: 'DSA',
     color: '#FFA116',
     iconBg: 'rgba(255,161,22,0.12)',
     iconBorder: 'rgba(255,161,22,0.4)',
   },
   {
-    name: 'GitHub Foundations Certification',
+    name: 'GitHub Foundations Certification (GH-900)',
     issuer: 'GitHub',
     year: '2026',
-    link: 'https://verify.certport.com',
-    image: '/images/cert-github.jpg',
+    link: 'https://learn.microsoft.com/en-gb/users/lavkumar-official/credentials/certification/github-foundations?tab=credentials-tab',
+    image: '/images/cert-github-foundations.png',
     monogram: 'GH',
     color: 'var(--github-color)',
     iconBg: 'var(--github-bg)',
@@ -31,78 +31,12 @@ const certs = [
     name: 'Microsoft Azure Fundamentals (AZ-900)',
     issuer: 'Microsoft',
     year: '2026',
-    link: 'https://verify.certport.com',
+    link: 'https://www.credly.com/badges/1ded4fce-c205-4daf-8c3b-1b5b604fa6e6',
     image: '/images/cert-azure.png',
     monogram: 'AZ',
     color: '#0078D4',
     iconBg: 'rgba(0,120,212,0.12)',
     iconBorder: 'rgba(0,120,212,0.4)',
-  },
-  {
-    name: 'NPTEL Elite Certification in Cloud Computing',
-    issuer: 'IIT / NPTEL',
-    year: '2025',
-    link: 'https://nptel.ac.in/noc/',
-    image: '/images/cert-nptel.png',
-    monogram: 'NPTEL',
-    color: '#008080',
-    iconBg: 'rgba(0,128,128,0.12)',
-    iconBorder: 'rgba(0,128,128,0.4)',
-  },
-  {
-    name: 'Google Cloud Career Launchpad: Cloud Engineer',
-    issuer: 'Google Cloud',
-    year: '2025',
-    link: 'https://google.credential.net',
-    image: '/images/cert-google.png',
-    monogram: 'GCP',
-    color: '#4285F4',
-    iconBg: 'rgba(66,133,244,0.12)',
-    iconBorder: 'rgba(66,133,244,0.4)',
-  },
-  {
-    name: 'Cloud Computing Fundamentals',
-    issuer: 'IBM SkillsBuild',
-    year: '2026',
-    link: 'https://www.credly.com/badges/89b622b8-9981-4585-b0fc-9510a831b1d4',
-    image: '/images/cert-ibm.png',
-    monogram: 'IBM',
-    color: '#0F62FE',
-    iconBg: 'rgba(15,98,254,0.12)',
-    iconBorder: 'rgba(15,98,254,0.4)',
-  },
-  {
-    name: 'SAP Certified - SAP Generative AI Developer',
-    issuer: 'SAP',
-    year: '2026',
-    link: 'https://www.credly.com/badges/50f0c7c4-4821-4f65-8670-dfcc4a2aa49d',
-    image: '/images/cert-sap.jpg',
-    monogram: 'SAP',
-    color: '#008FD3',
-    iconBg: 'rgba(0,143,211,0.12)',
-    iconBorder: 'rgba(0,143,211,0.4)',
-  },
-  {
-    name: 'SAP Certified - Back-End Developer - ABAP Cloud',
-    issuer: 'SAP',
-    year: '2026',
-    link: 'https://www.credly.com/badges/48347e2f-44b1-4425-8d35-37b4050994f6',
-    image: '/images/cert-sap-abap.jpg',
-    monogram: 'SAP',
-    color: '#008FD3',
-    iconBg: 'rgba(0,143,211,0.12)',
-    iconBorder: 'rgba(0,143,211,0.4)',
-  },
-  {
-    name: 'Certified Implementation Specialist - Data Foundations',
-    issuer: 'ServiceNow',
-    year: '2026',
-    link: 'https://nowlearning.servicenow.com',
-    image: '/images/cert-servicenow.jpg',
-    monogram: 'SN',
-    color: '#1F574D',
-    iconBg: 'rgba(31,87,77,0.12)',
-    iconBorder: 'rgba(31,87,77,0.4)',
   },
   {
     name: 'MongoDB Skill: Relational to Document Model',
@@ -119,12 +53,14 @@ const certs = [
 
 const fade = {
   hidden: { opacity: 0, y: 28 },
-  show:   { opacity: 1, y: 0 },
+  show: { opacity: 1, y: 0 },
 };
 
 export default function Certifications() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.08 });
   const [activeCert, setActiveCert] = useState(null);
+  const closeButtonRef = useRef(null);
+  const triggerRef = useRef(null);
 
   // Close lightbox on escape key
   useEffect(() => {
@@ -134,6 +70,24 @@ export default function Certifications() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeCert]);
+
+  useEffect(() => {
+    if (!activeCert) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [activeCert]);
+
+  useEffect(() => {
+    if (activeCert) {
+      closeButtonRef.current?.focus();
+    } else {
+      triggerRef.current?.focus();
+    }
   }, [activeCert]);
 
   return (
@@ -155,22 +109,27 @@ export default function Certifications() {
               style={{ '--cert-color': c.color }}
             >
               {/* Badge image (clickable) */}
-              <div 
+              <button
+                type="button"
                 className={styles.certs__image}
-                onClick={() => setActiveCert(c)}
+                onClick={(event) => {
+                  triggerRef.current = event.currentTarget;
+                  setActiveCert(c);
+                }}
+                aria-label={`Preview ${c.name}`}
                 title="Click to view large certificate"
               >
                 <img src={c.image} alt={`${c.issuer} certification badge`} loading="lazy" />
-              </div>
+              </button>
 
               {/* Top row */}
               <div className={styles['certs__card-top']}>
                 <div
                   className={styles.certs__icon}
                   style={{
-                    background:   c.iconBg,
-                    color:        c.color,
-                    borderColor:  c.iconBorder,
+                    background: c.iconBg,
+                    color: c.color,
+                    borderColor: c.iconBorder,
                   }}
                 >
                   {c.monogram}
@@ -201,6 +160,8 @@ export default function Certifications() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* View-all link removed per request */}
       </div>
 
       {/* Lightbox Modal */}
@@ -212,24 +173,30 @@ export default function Certifications() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setActiveCert(null)}
+            role="presentation"
           >
             <motion.div
               className={styles['certs__lightbox-content']}
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              initial={{ scale: 0.94, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.94, opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="certificate-dialog-title"
             >
-              <button 
-                className={styles['certs__lightbox-close']} 
+              <button
+                ref={closeButtonRef}
+                type="button"
+                className={styles['certs__lightbox-close']}
                 onClick={() => setActiveCert(null)}
                 aria-label="Close preview"
               >
                 <FiX />
               </button>
               <img src={activeCert.image} alt={`${activeCert.name} full preview`} />
-              <div className={styles['certs__lightbox-caption']}>
+              <div id="certificate-dialog-title" className={styles['certs__lightbox-caption']}>
                 {activeCert.name}
               </div>
             </motion.div>

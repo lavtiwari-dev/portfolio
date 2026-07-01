@@ -5,8 +5,8 @@
   --panel: #27273a;
   --panel-alt: #313146;
   --border: #3a3a52;
-  --text: #cdd6f4;
-  --muted: #8a8db3;
+  --text: #f8f9fc; // Brighter off-white for maximum legibility
+  --muted: #a6b0cf; // Brighter muted blue-gray for body text contrast
   --blue: #89b4fa;
   --green: #a6e3a1;
   --yellow: #f9e2af;
@@ -26,8 +26,8 @@
   --term-bg: #1e1e2e;
   --term-bg-alt: #181825;
   --term-border: #313244;
-  --term-text: #cdd6f4;
-  --term-muted: #7f849c;
+  --term-text: #f8f9fc; // Brighter terminal text
+  --term-muted: #a6adc8; // Brighter terminal comments/labels
   --term-blue: #89b4fa;
   --term-green: #a6e3a1;
   --term-yellow: #f9e2af;
@@ -36,10 +36,13 @@
   --term-shadow: 0 32px 72px rgba(0, 0, 0, 0.45), 0 0 40px rgba(137, 180, 250, 0.05);
 
   --radius: 10px;
-  --max-w: 1100px;
+  --max-w: 1380px;
   --tab-h: 44px;
   --gutter-w: 48px;
   --transition: 0.22s ease;
+  
+  --grid-color: rgba(137, 180, 250, 0.035);
+  --glow-color: rgba(137, 180, 250, 0.08);
 }
 
 // ─── Light Theme ─────────────────────────────────────────────────────────────
@@ -49,8 +52,8 @@
   --panel: #ffffff;
   --panel-alt: #ededf0;
   --border: #d1d5db;
-  --text: #24292e;
-  --muted: #57606a;
+  --text: #161a1d; // Darker near-black for supreme contrast
+  --muted: #42494f; // Darker gray for readable description lines
   --blue: #1e66f5;
   --green: #40a02b;
   --yellow: #df8e1d;
@@ -78,6 +81,9 @@
   --term-mauve: #cba6f7;
   --term-cursor: #89b4fa;
   --term-shadow: 0 32px 72px rgba(0, 0, 0, 0.4), 0 4px 20px rgba(0, 0, 0, 0.15);
+
+  --grid-color: rgba(30, 102, 245, 0.035);
+  --glow-color: rgba(30, 102, 245, 0.04);
 }
 
 // ─── SCSS vars (re-export for convenience) ────────────────────────────────────

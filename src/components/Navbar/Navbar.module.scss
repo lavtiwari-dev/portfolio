@@ -112,12 +112,7 @@
 
   // ── Actions (theme + hamburger) ───────────────────────────────────────────
   &__actions {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 0 10px;
-    border-left: 1px solid var(--border);
-    flex-shrink: 0;
+    display: none;
 
     @media (max-width: 760px) {
       position: absolute;

@@ -4,14 +4,14 @@
   &__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    gap: clamp(24px, 4vw, 48px);
     align-items: start;
   }
 
   // ── Left ──────────────────────────────────────────────────────────────────
   &__info {
     .invite {
-      font-size: 15px;
+      font-size: 16.5px;
       color: var(--muted);
       line-height: 1.7;
       margin-bottom: 32px;
@@ -21,28 +21,28 @@
   &__detail {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 14px 0;
+    gap: 18px;
+    padding: 18px 0;
     border-bottom: 1px solid var(--border);
 
     &:first-of-type { border-top: 1px solid var(--border); }
 
     .icon_wrap {
-      width: 36px; height: 36px;
+      width: 42px; height: 42px;
       border-radius: 8px;
       background: var(--panel);
       border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       color: var(--accent);
-      font-size: 15px;
+      font-size: 17px;
     }
     .label {
       font-family: $mono;
-      font-size: 11px;
+      font-size: 11.5px;
       color: var(--muted);
     }
     .value {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text);
     }
     .copy_btn {
@@ -51,12 +51,12 @@
       align-items: center;
       gap: 4px;
       font-family: $mono;
-      font-size: 11px;
+      font-size: 11.5px;
       color: var(--muted);
       background: transparent;
       border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 3px 8px;
+      padding: 4px 10px;
       cursor: pointer;
       opacity: 0;
       transition: all var(--transition);
@@ -86,7 +86,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 16px;
+    padding: 14px 20px;
     background: var(--term-bg-alt);
     border-bottom: 1px solid var(--term-border);
     transition: background var(--transition), border-color var(--transition);
@@ -107,16 +107,16 @@
   }
 
   &__form {
-    padding: 20px;
+    padding: 26px 28px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 18px;
     background: var(--term-bg);
     transition: background var(--transition);
 
     .prompt_line {
       font-family: $mono;
-      font-size: 12px;
+      font-size: 13.5px;
       color: var(--term-blue);
       margin-bottom: -6px;
     }
@@ -137,16 +137,16 @@
       background: var(--term-bg-alt);
       border: 1px solid var(--term-border);
       border-radius: 6px;
-      padding: 10px 14px;
+      padding: 12px 16px;
       color: var(--term-text);
       font-family: $mono;
-      font-size: 13px;
+      font-size: 14px;
       transition: background var(--transition), border-color var(--transition), color var(--transition);
       outline: none;
       resize: vertical;
 
       &:focus { border-color: var(--accent); }
-      &::placeholder { color: var(--term-muted); opacity: 0.6; }
+      &::placeholder { color: var(--term-muted); opacity: 0.7; }
     }
 
     textarea { min-height: 100px; }
@@ -154,8 +154,8 @@
 
   &__submit {
     font-family: $mono;
-    font-size: 13px;
-    padding: 11px 20px;
+    font-size: 14px;
+    padding: 13px 24px;
     background: var(--accent);
     color: var(--bg);
     border: none;
@@ -200,4 +200,51 @@
 
 @media (max-width: 760px) {
   .contact__grid { grid-template-columns: 1fr; }
+  .contact__field input, .contact__field textarea {
+    font-size: 11.5px;
+    padding: 8px 12px;
+    &::placeholder { color: var(--term-text); opacity: 0.85; }
+  }
+  .contact__field label {
+    font-size: 10px;
+  }
+  .contact__detail {
+    padding: 10px 0;
+    .icon_wrap {
+      width: 32px; height: 32px;
+      font-size: 13px;
+    }
+    .label {
+      font-size: 9.5px;
+    }
+    .value {
+      font-size: 12px;
+    }
+    .copy_btn {
+      opacity: 1 !important;
+      font-size: 9.5px;
+      padding: 2px 6px;
+    }
+  }
+  .contact__form {
+    padding: 14px;
+    gap: 10px;
+  }
+  .contact__info .invite {
+    font-size: 12.5px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .contact__submit {
+    font-size: 11.5px;
+    padding: 9px 16px;
+  }
+  .contact__success {
+    font-size: 11.5px;
+    padding: 10px 12px;
+  }
+  .contact__error {
+    font-size: 11.5px;
+    padding: 8px 12px;
+  }
 }

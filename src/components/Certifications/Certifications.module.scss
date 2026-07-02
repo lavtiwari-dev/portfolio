@@ -35,7 +35,7 @@
     gap: 16px;
     overflow: hidden;
     box-shadow: var(--panel-shadow);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
     // Glowing left accent bar (color injected inline)
     &::before {
@@ -300,8 +300,6 @@
     @media (max-width: 576px) {
       top: 16px;
       right: 16px;
-      width: 36px;
-      height: 36px;
       font-size: 20px;
     }
   }
@@ -370,12 +368,13 @@
     }
 
     &__verify {
-      font-size: 9px;
-      padding: 4px 6px;
-      border-radius: 4px;
+      font-size: 10.5px;
+      padding: 10px 12px;
+      min-height: 44px;
+      border-radius: 6px;
       
       svg {
-        font-size: 10px;
+        font-size: 11px;
       }
     }
   }

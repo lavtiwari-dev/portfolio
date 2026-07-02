@@ -26,7 +26,7 @@
     border-radius: var(--radius);
     padding: 26px 30px;
     box-shadow: var(--panel-shadow);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
     &:last-child {
       margin-bottom: 0;

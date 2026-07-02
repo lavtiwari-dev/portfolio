@@ -149,6 +149,10 @@
       &::placeholder { color: var(--term-muted); opacity: 0.7; }
     }
 
+    input {
+      min-height: 44px;
+    }
+
     textarea { min-height: 100px; }
   }
 
@@ -156,14 +160,16 @@
     font-family: $mono;
     font-size: 14px;
     padding: 13px 24px;
+    min-height: 44px;
     background: var(--accent);
     color: var(--bg);
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     transition: all var(--transition);
 
@@ -235,9 +241,13 @@
     margin-bottom: 20px;
     line-height: 1.6;
   }
+  .contact__field input {
+    min-height: 44px;
+  }
   .contact__submit {
     font-size: 11.5px;
     padding: 9px 16px;
+    min-height: 44px;
   }
   .contact__success {
     font-size: 11.5px;

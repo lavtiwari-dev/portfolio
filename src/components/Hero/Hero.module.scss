@@ -1,8 +1,8 @@
 @use '../../styles/variables' as *;
 
 .hero {
-  min-height: calc(100vh - var(--tab-h));
-  min-height: calc(100dvh - var(--tab-h));
+  min-height: min(calc(100vh - var(--tab-h)), 800px);
+  min-height: min(calc(100dvh - var(--tab-h)), 800px);
   display: flex;
   align-items: center;
   margin: 0;
@@ -17,8 +17,8 @@
 
   // Prevent huge vertical height in portrait viewports (e.g. mobile Chrome in Desktop site mode)
   @media (max-aspect-ratio: 1/1) {
-    min-height: calc(100vh - var(--tab-h));
-    min-height: calc(100dvh - var(--tab-h));
+    min-height: min(calc(100vh - var(--tab-h)), 800px);
+    min-height: min(calc(100dvh - var(--tab-h)), 800px);
     margin: 0;
     padding-top: 24px;
     padding-bottom: 24px;
@@ -277,6 +277,8 @@
     color: var(--term-text);
     background: var(--term-bg);
     transition: background var(--transition);
+    overflow-wrap: break-word;
+    word-break: break-word;
 
     .prompt {
       color: var(--term-blue);
@@ -354,8 +356,8 @@
 
 @media (max-width: 900px) {
   .hero {
-    min-height: calc(100vh - var(--tab-h));
-    min-height: calc(100dvh - var(--tab-h));
+    min-height: min(calc(100vh - var(--tab-h)), 800px);
+    min-height: min(calc(100dvh - var(--tab-h)), 800px);
     margin: 0;
     padding-top: 24px;
     padding-bottom: 24px;

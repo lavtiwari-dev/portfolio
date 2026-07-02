@@ -22,7 +22,7 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: var(--panel-shadow);
 
     &:hover {
@@ -94,7 +94,7 @@
     font-family: $mono;
     font-size: 13.5px;
     color: var(--muted);
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.38s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: default;
 
     @media (max-width: 600px) {

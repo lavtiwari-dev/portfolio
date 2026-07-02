@@ -12,6 +12,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--tab-h);
+  overflow-x: hidden;
 }
 
 body {
@@ -28,6 +29,10 @@ body {
   line-height: 1.65;
   overflow-x: hidden;
   transition: background var(--transition), color var(--transition);
+
+  @media (max-width: 760px) {
+    background-image: none;
+  }
 
   &::before {
     content: '';
@@ -202,10 +207,12 @@ a:hover {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: clamp(6px, 0.8vw, 8px);
   font-family: $mono;
   font-size: clamp(12px, 1.2vw, 13px);
   padding: clamp(8px, 1vw, 10px) clamp(16px, 2vw, 20px);
+  min-height: 44px;
   border-radius: var(--radius);
   border: 1px solid transparent;
   cursor: pointer;
@@ -216,7 +223,8 @@ a:hover {
 
   @media (max-width: 600px) {
     font-size: 11px;
-    padding: 7px 14px;
+    padding: 6px 14px;
+    min-height: 44px;
   }
 
   // Hover catcher to extend hover active region and prevent translation flickering

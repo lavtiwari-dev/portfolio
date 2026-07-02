@@ -1,6 +1,6 @@
 // ─── Dark Theme (default) ───────────────────────────────────────────────────
 :root {
-  --bg: #000000;
+  --bg: #080808;
   --bg-alt: #080808;
   --panel: #111111;
   --panel-alt: #1a1a1a;
@@ -23,11 +23,11 @@
   --github-bg: rgba(240, 246, 252, 0.12);
   --github-border: rgba(240, 246, 252, 0.4);
 
-  --term-bg: #0a0a0a;
-  --term-bg-alt: #050505;
-  --term-border: #222222;
-  --term-text: #f8f9fc; // Brighter terminal text
-  --term-muted: #a6adc8; // Brighter terminal comments/labels
+  --term-bg: #121214;
+  --term-bg-alt: #0a0a0c;
+  --term-border: #222225;
+  --term-text: #f8f9fc; // Sleek white
+  --term-muted: #8a8a93; // Zinc muted grey
   --term-blue: #89b4fa;
   --term-green: #a6e3a1;
   --term-yellow: #f9e2af;
@@ -39,7 +39,7 @@
   --max-w: 1380px;
   --tab-h: 44px;
   --gutter-w: 48px;
-  --transition: 0.22s ease;
+  --transition: 0.38s cubic-bezier(0.16, 1, 0.3, 1);
 
   --grid-color: rgba(137, 180, 250, 0.035);
   --glow-color: rgba(137, 180, 250, 0.08);
@@ -76,11 +76,11 @@
   --github-border: rgba(36, 41, 46, 0.15);
 
   // Terminal block stays intentionally dark — floating "editor" on a light page
-  --term-bg: #0a0a0a;
-  --term-bg-alt: #050505;
-  --term-border: #333333; // brighter than dark mode's #222 so it separates from light page
+  --term-bg: #121214;
+  --term-bg-alt: #0a0a0c;
+  --term-border: #222225;
   --term-text: #f8f9fc;
-  --term-muted: #a6adc8;
+  --term-muted: #8a8a93;
   --term-blue: #89b4fa;
   --term-green: #a6e3a1;
   --term-yellow: #f9e2af;

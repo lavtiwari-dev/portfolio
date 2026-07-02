@@ -234,7 +234,7 @@ function TypingTerminal() {
                 <div
                   key={lineIdx}
                   style={{
-                    paddingLeft: line.indent ? line.indent * 12 : 0,
+                    paddingLeft: line.indent ? line.indent * 13 : 0,
                     lineHeight: 1.8
                   }}
                 >
@@ -291,12 +291,14 @@ export default function Hero({ onSectionChange }) {
             </motion.p>
 
             <motion.div className={styles.hero__ctas} variants={fade}>
-              <a href="#projects" className="btn btn--primary" onClick={e => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); onSectionChange?.('projects'); }}>
-                <FiArrowDown /> View projects
-              </a>
-              <a href="/resume.pdf" className="btn btn--outline" download>
-                <FiDownload /> Download résumé
-              </a>
+              <div className={styles['hero__cta-group']}>
+                <a href="#projects" className="btn btn--primary" onClick={e => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); onSectionChange?.('projects'); }}>
+                  <FiArrowDown /> View projects
+                </a>
+                <a href="/resume.pdf" className="btn btn--outline" download>
+                  <FiDownload /> Download résumé
+                </a>
+              </div>
               <a href="#contact" className="btn btn--ghost" onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); onSectionChange?.('contact'); }}>
                 <FiMessageCircle /> Get in touch
               </a>

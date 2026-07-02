@@ -40,13 +40,12 @@
     flex-direction: column;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: default;
+    box-shadow: var(--panel-shadow);
 
     &:hover {
       transform: translateY(-6px);
       border-color: rgba(137, 180, 250, 0.5);
-      box-shadow: 
-        0 20px 38px rgba(0, 0, 0, 0.45), 
-        0 0 25px rgba(137, 180, 250, 0.12);
+      box-shadow: var(--panel-shadow-hover);
     }
 
     @media (max-width: 640px) {
@@ -93,9 +92,9 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
 
-    &--live     { background: rgba(166,227,161,0.12); color: var(--green); border: 1px solid rgba(166,227,161,0.3); }
-    &--progress { background: rgba(249,226,175,0.12); color: var(--yellow); border: 1px solid rgba(249,226,175,0.3); }
-    &--archived { background: rgba(138,141,179,0.12); color: var(--muted); border: 1px solid rgba(138,141,179,0.3); }
+    &--live     { background: color-mix(in srgb, var(--green) 12%, transparent); color: var(--green); border: 1px solid color-mix(in srgb, var(--green) 30%, transparent); }
+    &--progress { background: color-mix(in srgb, var(--yellow) 12%, transparent); color: var(--yellow); border: 1px solid color-mix(in srgb, var(--yellow) 30%, transparent); }
+    &--archived { background: color-mix(in srgb, var(--muted) 12%, transparent); color: var(--muted); border: 1px solid color-mix(in srgb, var(--muted) 30%, transparent); }
   }
 
   &__preview {
@@ -121,7 +120,7 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(39, 39, 58, 0) 50%, rgba(39, 39, 58, 0.6) 100%);
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.45) 100%);
     pointer-events: none;
     transition: opacity 0.3s ease;
   }
@@ -168,7 +167,7 @@
   &__metric {
     padding: 8px 10px;
     border-left: 2px solid var(--green);
-    background: rgba(166, 227, 161, 0.06);
+    background: color-mix(in srgb, var(--green) 6%, transparent);
     color: var(--text);
     font-family: $mono;
     font-size: 10.5px;

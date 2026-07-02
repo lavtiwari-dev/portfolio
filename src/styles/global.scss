@@ -50,11 +50,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-alt);
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 
@@ -70,8 +70,8 @@ body {
 
 // ─── Selection ───────────────────────────────────────────────────────────────
 ::selection {
-  background: var(--accent);
-  color: var(--bg);
+  background: var(--selection-bg);
+  color: var(--selection-text);
 }
 
 // ─── Links ───────────────────────────────────────────────────────────────────
@@ -112,6 +112,10 @@ a:hover {
   width: 100%;
   margin: 0 auto;
   padding: 0 24px;
+
+  @media (max-width: 480px) {
+    padding: 0 16px;
+  }
 }
 
 // ─── Section wrapper ─────────────────────────────────────────────────────────
@@ -208,6 +212,7 @@ a:hover {
   transition: all var(--transition);
   text-decoration: none;
   position: relative;
+  white-space: nowrap;
 
   @media (max-width: 600px) {
     font-size: 11px;
@@ -248,7 +253,7 @@ a:hover {
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 24px rgba(137, 180, 250, 0.45);
+      box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 45%, transparent);
       color: var(--bg);
 
       &::after {
@@ -266,9 +271,9 @@ a:hover {
     font-weight: 600;
 
     &:hover {
-      background: rgba(137, 180, 250, 0.08);
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
       transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(137, 180, 250, 0.2);
+      box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 20%, transparent);
     }
   }
 

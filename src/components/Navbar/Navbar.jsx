@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FiCode, FiUser, FiDatabase, FiFolder,
-  FiAward, FiBook, FiTerminal, FiMenu, FiX
+  FiAward, FiBook, FiTerminal, FiMenu, FiX,
+  FiSun, FiMoon
 } from 'react-icons/fi';
 import styles from './Navbar.module.scss';
 
@@ -16,7 +17,7 @@ const tabs = [
   { id: 'contact',        label: 'contact.sh',        icon: <FiTerminal /> },
 ];
 
-export default function Navbar({ activeSection, onSectionChange }) {
+export default function Navbar({ activeSection, onSectionChange, theme, onToggleTheme }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const menuButtonRef = useRef(null);
 
@@ -76,6 +77,15 @@ export default function Navbar({ activeSection, onSectionChange }) {
 
       {/* Actions */}
       <div className={styles.navbar__actions}>
+        <button
+          type="button"
+          className={styles.navbar__theme_btn}
+          onClick={onToggleTheme}
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        >
+          {theme === 'dark' ? <FiSun /> : <FiMoon />}
+        </button>
+
         {/* Mobile hamburger */}
         <button
           ref={menuButtonRef}

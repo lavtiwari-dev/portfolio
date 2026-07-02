@@ -25,6 +25,7 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 26px 30px;
+    box-shadow: var(--panel-shadow);
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 
     &:last-child {
@@ -33,7 +34,7 @@
 
     &:hover {
       border-color: var(--accent);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: var(--panel-shadow-hover);
       transform: translateX(8px);
     }
 

@@ -18,13 +18,21 @@ const SECTIONS = ['hero', 'about', 'projects', 'skills', 'certifications', 'educ
 export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'dark';
+  });
 
   const lockRef = useRef(false);
   const timeoutRef = useRef(null);
 
   // Apply theme
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = useCallback(() => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
   }, []);
 
   // Handle active section change when tab is clicked
@@ -90,6 +98,8 @@ export default function App() {
           <Navbar
             activeSection={activeSection}
             onSectionChange={handleSectionChange}
+            theme={theme}
+            onToggleTheme={toggleTheme}
           />
           <LineGutter activeSection={activeSection} />
 

@@ -1,19 +1,27 @@
 @use '../../styles/variables' as *;
 
 .hero {
-  min-height: 75vh;
+  min-height: calc(100vh - var(--tab-h));
+  min-height: calc(100dvh - var(--tab-h));
   display: flex;
   align-items: center;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
   position: relative;
   overflow: hidden;
 
+  :global(.container) {
+    max-width: 1450px;
+  }
+
   // Prevent huge vertical height in portrait viewports (e.g. mobile Chrome in Desktop site mode)
   @media (max-aspect-ratio: 1/1) {
-    min-height: auto;
-    padding-top: clamp(80px, 10vh, 120px);
-    padding-bottom: clamp(60px, 8vh, 100px);
+    min-height: calc(100vh - var(--tab-h));
+    min-height: calc(100dvh - var(--tab-h));
+    margin: 0;
+    padding-top: 24px;
+    padding-bottom: 24px;
   }
 
   // ambient glow blobs
@@ -45,8 +53,8 @@
 
   &__grid {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(24px, 4vw, 48px);
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(28px, 4.5vw, 56px);
     align-items: center;
     width: 100%;
   }
@@ -66,17 +74,17 @@
     align-items: center;
     gap: 8px;
     font-family: $mono;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--green);
     background: rgba(166, 227, 161, 0.08);
     border: 1px solid rgba(166, 227, 161, 0.2);
-    padding: 4px 12px;
+    padding: 5px 12px;
     border-radius: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
 
     .dot {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       background: var(--green);
       border-radius: 50%;
       animation: pulse 2s ease-in-out infinite;
@@ -85,11 +93,11 @@
 
   &__headline {
     font-family: $mono;
-    font-size: clamp(24px, 3.5vw, 48px);
+    font-size: clamp(30px, 4.5vw, 60px);
     font-weight: 700;
     line-height: 1.2;
     color: var(--text);
-    margin-bottom: clamp(12px, 2vw, 20px);
+    margin-bottom: 14px;
 
     span {
       color: var(--accent);
@@ -97,18 +105,50 @@
   }
 
   &__subtext {
-    font-size: 16px;
+    font-size: 19px;
     color: var(--muted);
-    max-width: 580px;
+    max-width: 740px;
     line-height: 1.7;
-    margin-bottom: clamp(16px, 3vw, 32px);
+    margin-bottom: 24px;
   }
 
   &__ctas {
     display: flex;
     flex-wrap: wrap;
-    gap: clamp(8px, 1.2vw, 12px);
-    margin-bottom: clamp(20px, 4vw, 40px);
+    gap: clamp(8px, 1.2vw, 14px);
+    margin-bottom: 28px;
+
+    :global(.btn) {
+      font-size: 14.5px;
+      padding: 12px 24px;
+      justify-content: center;
+
+      @media (max-width: 600px) {
+        font-size: 12.5px;
+        padding: 10px 16px;
+      }
+
+      @media (max-width: 375px) {
+        font-size: 11px;
+        padding: 8px 12px;
+      }
+    }
+  }
+
+  &__cta-group {
+    display: inline-flex;
+    gap: clamp(8px, 1.2vw, 14px);
+
+    @media (max-width: 600px) {
+      display: flex;
+      width: 100%;
+      gap: 8px;
+
+      :global(.btn) {
+        flex: 1;
+        min-width: 0;
+      }
+    }
   }
 
   &__socials {
@@ -120,11 +160,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
+      width: 46px;
+      height: 46px;
       border-radius: 9px;
       border: 1px solid var(--border);
-      font-size: 18px;
+      font-size: 21px;
       transition: all var(--transition);
 
       &:hover {
@@ -184,7 +224,7 @@
   // ── Terminal window ──────────────────────────────────────────────────────
   &__terminal {
     width: 100%;
-    max-width: 620px;
+    max-width: 750px;
     background: var(--term-bg);
     border: 1px solid var(--term-border);
     border-radius: var(--radius);
@@ -197,7 +237,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 16px;
+    padding: 11px 18px;
     background: var(--term-bg-alt);
     border-bottom: 1px solid var(--term-border);
     transition: background var(--transition), border-color var(--transition);
@@ -222,18 +262,18 @@
 
     .title {
       font-family: $mono;
-      font-size: 11px;
+      font-size: 11.5px;
       color: var(--term-muted);
       margin-left: auto;
     }
   }
 
   &__term-body {
-    padding: clamp(14px, 1.8vw, 20px);
+    padding: clamp(16px, 2vw, 22px);
     font-family: $mono;
-    font-size: clamp(11.5px, 1.3vw, 13.5px);
+    font-size: clamp(13.5px, 1.5vw, 16px);
     line-height: 1.8;
-    min-height: 260px;
+    min-height: 310px;
     color: var(--term-text);
     background: var(--term-bg);
     transition: background var(--transition);
@@ -314,31 +354,33 @@
 
 @media (max-width: 900px) {
   .hero {
-    min-height: auto;
-    padding-top: 12px;
-    padding-bottom: 40px;
+    min-height: calc(100vh - var(--tab-h));
+    min-height: calc(100dvh - var(--tab-h));
+    margin: 0;
+    padding-top: 24px;
+    padding-bottom: 24px;
   }
 
   .hero__grid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 48px;
     text-align: center;
   }
 
   .hero__headline {
-    font-size: clamp(20px, 6vw, 30px);
+    font-size: clamp(24px, 7vw, 38px);
   }
 
   .hero__subtext {
-    font-size: 13px;
+    font-size: 15px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .hero__eyebrow {
-    font-size: 10.5px;
-    padding: 3px 10px;
-    margin-bottom: 12px;
+    font-size: 12.5px;
+    padding: 5px 12px;
+    margin-bottom: 16px;
   }
 
   .hero__ctas {
@@ -359,14 +401,14 @@
 
   .hero__terminal {
     width: 100%;
-    max-width: 500px;
+    max-width: 580px;
   }
 }
 
 @media (max-width: 500px) {
   .hero__term-body {
-    padding: 14px 16px;
-    font-size: 12px;
-    min-height: 230px;
+    padding: 16px 20px;
+    font-size: 13.5px;
+    min-height: 260px;
   }
 }

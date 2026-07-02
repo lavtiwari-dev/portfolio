@@ -113,8 +113,9 @@ export default function Projects() {
   const handleScroll = () => {
     if (!gridRef.current) return;
     const { scrollLeft, clientWidth } = gridRef.current;
-    const cardWidth = clientWidth - 8;
-    const index = Math.round(scrollLeft / cardWidth);
+    const card = gridRef.current.querySelector(`.${styles.projects__card}`);
+    const step = card ? card.getBoundingClientRect().width + 12 : clientWidth - 8;
+    const index = Math.round(scrollLeft / step);
     setActiveIndex(Math.max(0, Math.min(index, projects.length - 1)));
   };
 
@@ -254,9 +255,10 @@ export default function Projects() {
               className={`${styles.projects__indicator} ${activeIndex === idx ? styles['projects__indicator--active'] : ''}`}
               onClick={() => {
                 if (gridRef.current) {
-                  const cardWidth = gridRef.current.clientWidth - 8;
+                  const card = gridRef.current.querySelector(`.${styles.projects__card}`);
+                  const step = card ? card.getBoundingClientRect().width + 12 : gridRef.current.clientWidth - 8;
                   gridRef.current.scrollTo({
-                    left: idx * cardWidth,
+                    left: idx * step,
                     behavior: 'smooth'
                   });
                 }

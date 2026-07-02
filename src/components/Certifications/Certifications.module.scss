@@ -69,31 +69,31 @@
 
   // ── Badge image preview ──────────────────────────────────────────────────
   &__image {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 0 6px;
+    width: calc(100% + 40px);
+    margin: -20px -20px 14px -20px;
+    height: 140px;
+    display: block;
     cursor: zoom-in;
     color: inherit;
-    background: transparent;
+    background: var(--panel-alt);
     border: 0;
+    overflow: hidden;
+    flex-shrink: 0;
 
     img {
-      width: 96px;
-      height: 96px;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
-      border-radius: 8px;
+      object-position: center;
       /* keep a muted tint of the vendor color instead of full B&W */
-      filter: grayscale(35%) saturate(65%) brightness(0.95) contrast(1);
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease, opacity 0.2s ease;
+      filter: grayscale(10%) saturate(90%) contrast(1);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter var(--transition);
       opacity: 1;
     }
   }
 
   &__card:hover &__image img {
     transform: scale(1.05);
-    filter: drop-shadow(0 10px 24px rgba(0,0,0,0.6));
   }
 
   // ── Top row: icon + year badge ────────────────────────────────────────────
@@ -321,12 +321,16 @@
     }
 
     &__image {
-      padding: 6px 0 4px;
+      width: calc(100% + 16px);
+      margin: -10px -8px 8px -8px;
+      height: 100px;
+      padding: 0;
+      background: var(--panel-alt);
 
       img {
-        width: 74px;
-        height: 74px;
-        border-radius: 8px;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
       }
     }
 

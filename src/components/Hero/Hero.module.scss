@@ -76,8 +76,8 @@
     font-family: $mono;
     font-size: 14px;
     color: var(--green);
-    background: rgba(166, 227, 161, 0.08);
-    border: 1px solid rgba(166, 227, 161, 0.2);
+    background: color-mix(in srgb, var(--green) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--green) 20%, transparent);
     padding: 5px 12px;
     border-radius: 20px;
     margin-bottom: 14px;

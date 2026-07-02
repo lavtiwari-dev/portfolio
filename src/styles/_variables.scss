@@ -47,33 +47,33 @@
 
 // ─── Light Theme ─────────────────────────────────────────────────────────────
 [data-theme='light'] {
-  --bg: #F5F5F0; // Off-white warm background to avoid screen-glare
-  --bg-alt: #EDEDE8; // Very light grey for layout blocks/sections
-  --panel: #FFFFFF; // Pure white for card canvas
-  --panel-alt: #F3F3EE; // Slightly warmer than bg-alt for hover states
-  --border: #D8D8D8; // Subtle grey borders for structure
-  --text: #24292E; // Charcoal body text for reading comfort
-  --muted: #57606F; // Muted charcoal for comments/labels
+  --bg: #FFFFFF; // Pure white background
+  --bg-alt: #F8FAFC; // Soft grey-blue background for section alternates
+  --panel: #FFFFFF; // Panels stay pure white
+  --panel-alt: #F1F5F9; // Soft panel alternates
+  --border: #E2E8F0; // Very soft, modern slate-200 border
+  --text: #111111; // Darker charcoal-black text for highest readability
+  --muted: #475569; // Darker muted slate text
 
-  --blue: #0969DA;
-  --green: #1B7F4B;
-  --yellow: #9A6700;
-  --pink: #CF222E;
-  --mauve: #8250DF;
-  --peach: #BC4C00;
-  --accent: #1B7F4B;
-  --cursor: #1B7F4B;
+  --blue: #1d4ed8; // Darker slate blue for readable text
+  --green: #15803d; // Darker forest green for readable text
+  --yellow: #b45309; // Darker amber for readable text
+  --pink: #be185d; // Darker pink for readable text
+  --mauve: #6d28d9; // Darker purple/mauve for readable text
+  --peach: #c2410c; // Darker orange/peach for readable text
+  --accent: #1d4ed8; // Clean readable blue accent
+  --cursor: #1d4ed8;
 
   // Panel elevation — light mode needs real shadow, not just a bg shift
-  --panel-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
-  --panel-shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.06);
+  --panel-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.03);
+  --panel-shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.07), 0 8px 20px rgba(0, 0, 0, 0.05);
 
   --social-icon: var(--text);
-  --social-shadow: rgba(27, 127, 75, 0.15);
+  --social-shadow: rgba(29, 78, 216, 0.12);
 
   --github-color: #24292e;
-  --github-bg: rgba(36, 41, 46, 0.05);
-  --github-border: rgba(36, 41, 46, 0.15);
+  --github-bg: rgba(36, 41, 46, 0.04);
+  --github-border: rgba(36, 41, 46, 0.1);
 
   // Terminal block stays intentionally dark — floating "editor" on a light page
   --term-bg: #121214;
@@ -89,15 +89,15 @@
   --term-shadow: 0 20px 50px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.1);
 
   // Fine details that get missed
-  --selection-bg: rgba(27, 127, 75, 0.15);
-  --selection-text: #1B7F4B;
-  --scrollbar-thumb: #C4C4BE;
-  --scrollbar-track: #EDEDE8;
-  --code-inline-bg: #EDEDE8;
-  --link-hover: #0969DA;
+  --selection-bg: rgba(59, 130, 246, 0.12);
+  --selection-text: #2563eb;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-track: #f1f5f9;
+  --code-inline-bg: #f1f5f9;
+  --link-hover: #1d4ed8;
 
-  --grid-color: rgba(27, 127, 75, 0.04);
-  --glow-color: rgba(27, 127, 75, 0.07);
+  --grid-color: rgba(59, 130, 246, 0.02);
+  --glow-color: rgba(59, 130, 246, 0.05);
 }
 
 // ─── SCSS vars (re-export for convenience) ────────────────────────────────────

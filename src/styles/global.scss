@@ -7,6 +7,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -72,6 +73,11 @@ body {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+
+// Clear focus outlines for mouse clicks (when keyboard focus is not active)
+:focus:not(:focus-visible) {
+  outline: none !important;
 }
 
 // ─── Selection ───────────────────────────────────────────────────────────────

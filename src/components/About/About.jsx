@@ -28,9 +28,6 @@ const facts = [
     icon: <FiMapPin />,
   },
 ];
-
-const tags = ['Java', 'JavaScript', 'React', 'Node.js', 'MongoDB', 'REST APIs'];
-
 const fade = (delay = 0) => ({
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.55, delay } },
@@ -89,11 +86,6 @@ export default function About() {
                 </div>
               ))}
             </dl>
-
-            <div className={styles.about__tags} aria-label="Core technologies">
-              {tags.map((tag) => <span key={tag}>{tag}</span>)}
-            </div>
-
             <div className={styles.about__actions}>
               <a href="/resume.pdf" className="btn btn--outline" download>
                 <FiDownload /> Download résumé

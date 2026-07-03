@@ -98,6 +98,7 @@
         width: calc(100% - 48px) !important;
         margin-left: 48px !important;
         margin-right: 0 !important;
+        padding: 16px 18px !important; // More compact card padding on mobile
       }
     }
   }
@@ -129,7 +130,7 @@
 
     @media (max-width: 768px) {
       left: 16px;
-      top: 30px; // align with the card's top area
+      top: 26px; // align with the card's top area (accounting for reduced padding)
       transform: translate(-50%, 0);
     }
   }
@@ -265,6 +266,10 @@
     color: var(--text);
     margin-bottom: 6px;
     line-height: 1.4;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
 
   &__meta {
@@ -275,6 +280,12 @@
     font-family: $mono;
     font-size: 12.5px;
     color: var(--muted);
+
+    @media (max-width: 768px) {
+      font-size: 11px;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
 
     .institution {
       color: var(--blue);
@@ -290,6 +301,11 @@
     color: var(--muted);
     line-height: 1.7;
     margin-top: 8px;
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+      line-height: 1.6;
+    }
   }
 
   // Active / pulsed card styling for first child on mobile (similar to legacy style)

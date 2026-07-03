@@ -127,15 +127,47 @@ export default function Projects() {
   // Lock body scroll when popup is active
   useEffect(() => {
     if (activeProject) {
+      const scrollY = window.scrollY;
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
       document.body.style.overflow = 'hidden';
-      document.body.style.paddingRight = '8px'; // Prevent layout shift due to scrollbar removal
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      document.documentElement.style.overflow = 'hidden';
+      
+      document.body.dataset.scrollY = scrollY.toString();
     } else {
+      const scrollY = document.body.dataset.scrollY;
+      
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
+      document.documentElement.style.overflow = '';
+      
+      if (scrollY) {
+        delete document.body.dataset.scrollY;
+        // Temporarily disable smooth scrolling to scroll back instantly
+        document.documentElement.style.scrollBehavior = 'auto';
+        window.scrollTo(0, parseInt(scrollY, 10));
+        document.documentElement.style.scrollBehavior = '';
+      }
     }
     return () => {
+      const scrollY = document.body.dataset.scrollY;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
+      document.documentElement.style.overflow = '';
+      if (scrollY) {
+        delete document.body.dataset.scrollY;
+        window.scrollTo(0, parseInt(scrollY, 10));
+      }
     };
   }, [activeProject]);
 

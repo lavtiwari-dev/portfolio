@@ -292,6 +292,7 @@
     padding: 24px;
     cursor: zoom-out;
     touch-action: none; // Disable background touch action to prevent scrolling
+    -webkit-tap-highlight-color: transparent;
 
     @media (max-width: 640px) {
       padding: 12px;
@@ -312,6 +313,7 @@
     box-shadow: 0 24px 64px rgba(0,0,0,0.8);
     max-height: 90vh;
     touch-action: auto; // Re-enable touch gestures on the content
+    -webkit-tap-highlight-color: transparent;
   }
 
   &__popup-header {
@@ -336,6 +338,7 @@
     justify-content: center;
     width: 44px;
     height: 44px;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover { opacity: 1; }
   }
@@ -519,6 +522,7 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
       color: var(--text);

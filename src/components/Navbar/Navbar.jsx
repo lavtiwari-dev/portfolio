@@ -46,9 +46,14 @@ export default function Navbar({ activeSection, onSectionChange, theme, onToggle
   return (
     <nav className={styles.navbar} role="navigation" aria-label="Main navigation">
       {/* Mobile brand title (hidden on desktop) */}
-      <div className={styles.navbar__mobile_title}>
+      <button
+        type="button"
+        className={styles.navbar__mobile_title}
+        onClick={() => scrollTo('hero')}
+        aria-label="Scroll to Hero section"
+      >
         Lav Kumar
-      </div>
+      </button>
 
       {/* Desktop tabs */}
       <div className={styles.navbar__tabs}>

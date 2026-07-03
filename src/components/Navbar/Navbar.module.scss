@@ -51,6 +51,15 @@
       color: var(--text);
       letter-spacing: 1px;
       white-space: nowrap;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 

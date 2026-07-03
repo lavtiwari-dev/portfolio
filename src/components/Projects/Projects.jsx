@@ -159,7 +159,7 @@ export default function Projects() {
     if (activeProject) {
       closeButtonRef.current?.focus();
     } else {
-      triggerRef.current?.focus();
+      triggerRef.current?.focus({ preventScroll: true });
     }
   }, [activeProject]);
   return (
@@ -274,107 +274,98 @@ export default function Projects() {
       </div>
 
       {/* Details Popup Modal */}
-      <AnimatePresence>
-        {activeProject && (
-          <motion.div
-            className={styles.projects__popup}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActiveProject(null)}
-            role="presentation"
+      {activeProject && (
+        <div
+          className={styles.projects__popup}
+          onClick={() => setActiveProject(null)}
+          role="presentation"
+        >
+          <div
+            className={styles['projects__popup-content']}
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${activeProject.name} details`}
           >
-            <motion.div
-              className={styles['projects__popup-content']}
-              initial={{ scale: 0.94, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.94, opacity: 0, y: 20 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              onClick={(e) => e.stopPropagation()}
-              role="dialog"
-              aria-modal="true"
-              aria-label={`${activeProject.name} details`}
-            >
-              {/* Header bar */}
-              <div className={styles['projects__popup-header']}>
-                <span className={styles.projects__filename}>
-                  <FiFile /> {activeProject.file}
-                </span>
-                <button
-                  ref={closeButtonRef}
-                  type="button"
-                  className={styles['projects__popup-close']}
-                  onClick={() => setActiveProject(null)}
-                  aria-label="Close details"
-                >
-                  <FiX />
-                </button>
+            {/* Header bar */}
+            <div className={styles['projects__popup-header']}>
+              <span className={styles.projects__filename}>
+                <FiFile /> {activeProject.file}
+              </span>
+              <button
+                ref={closeButtonRef}
+                type="button"
+                className={styles['projects__popup-close']}
+                onClick={() => setActiveProject(null)}
+                aria-label="Close details"
+              >
+                <FiX />
+              </button>
+            </div>
+
+            {/* Scrollable details */}
+            <div className={styles['projects__popup-scroll']}>
+              <div className={styles['projects__popup-image']}>
+                <img src={activeProject.image} alt={activeProject.name} />
               </div>
 
-              {/* Scrollable details */}
-              <div className={styles['projects__popup-scroll']}>
-                <div className={styles['projects__popup-image']}>
-                  <img src={activeProject.image} alt={activeProject.name} />
+              <div className={styles['projects__popup-meta']}>
+                <h3 className={styles['projects__popup-title']}>{activeProject.name}</h3>
+                <div className={styles.projects__stack} style={{ margin: '8px 0 12px' }}>
+                  {activeProject.stack.map(t => <span key={t} className="tag">{t}</span>)}
                 </div>
-
-                <div className={styles['projects__popup-meta']}>
-                  <h3 className={styles['projects__popup-title']}>{activeProject.name}</h3>
-                  <div className={styles.projects__stack} style={{ margin: '8px 0 12px' }}>
-                    {activeProject.stack.map(t => <span key={t} className="tag">{t}</span>)}
-                  </div>
-                  <p className={styles['projects__popup-longdesc']}>{activeProject.longDesc}</p>
-                  {activeProject.metric && (
-                    <div style={{ marginTop: 12 }}>
-                      <strong>Project outcome:</strong>
-                      <div style={{ marginTop: 6, color: 'var(--text)' }}>
-                        {activeProject.metric}
-                      </div>
+                <p className={styles['projects__popup-longdesc']}>{activeProject.longDesc}</p>
+                {activeProject.metric && (
+                  <div style={{ marginTop: 12 }}>
+                    <strong>Project outcome:</strong>
+                    <div style={{ marginTop: 6, color: 'var(--text)' }}>
+                      {activeProject.metric}
                     </div>
-                  )}
-                </div>
-
-                <div>
-                  <h4 className={styles['projects__popup-section-title']}>Technical Features</h4>
-                  <ul className={styles['projects__popup-features']}>
-                    {activeProject.features.map((feat, idx) => (
-                      <li key={idx}>{feat}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Action links */}
-              <div className={styles['projects__popup-footer']}>
-                {hasProjectLink(activeProject.repo) && (
-                  <a
-                    href={activeProject.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn--outline"
-                    style={{ padding: '8px 16px' }}
-                  >
-                    <FiGithub /> Source Code
-                  </a>
-                )}
-                {hasProjectLink(activeProject.demo) && (
-                  <a
-                    href={activeProject.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn--primary"
-                    style={{ padding: '8px 16px' }}
-                  >
-                    <FiExternalLink /> Visit Project
-                  </a>
-                )}
-                {!hasProjectLink(activeProject.repo) && !hasProjectLink(activeProject.demo) && (
-                  <span className={styles.projects__popup_unavailable}>Links will be added soon.</span>
+                  </div>
                 )}
               </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+              <div>
+                <h4 className={styles['projects__popup-section-title']}>Technical Features</h4>
+                <ul className={styles['projects__popup-features']}>
+                  {activeProject.features.map((feat, idx) => (
+                    <li key={idx}>{feat}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Action links */}
+            <div className={styles['projects__popup-footer']}>
+              {hasProjectLink(activeProject.repo) && (
+                <a
+                  href={activeProject.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--outline"
+                  style={{ padding: '8px 16px' }}
+                >
+                  <FiGithub /> Source Code
+                </a>
+              )}
+              {hasProjectLink(activeProject.demo) && (
+                <a
+                  href={activeProject.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--primary"
+                  style={{ padding: '8px 16px' }}
+                >
+                  <FiExternalLink /> Visit Project
+                </a>
+              )}
+              {!hasProjectLink(activeProject.repo) && !hasProjectLink(activeProject.demo) && (
+                <span className={styles.projects__popup_unavailable}>Links will be added soon.</span>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

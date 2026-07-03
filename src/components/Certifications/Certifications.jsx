@@ -68,7 +68,7 @@ export default function Certifications() {
     if (!gridRef.current) return;
     const { scrollLeft, clientWidth } = gridRef.current;
     const card = gridRef.current.querySelector(`.${styles.certs__card}`);
-    const step = card ? card.getBoundingClientRect().width + 16 : clientWidth - 8;
+    const step = card ? card.getBoundingClientRect().width + 12 : clientWidth - 8;
     const index = Math.round(scrollLeft / step);
     setActiveIndex(Math.max(0, Math.min(index, certs.length - 1)));
   };

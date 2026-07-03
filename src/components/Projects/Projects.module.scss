@@ -43,6 +43,7 @@
     cursor: default;
     box-shadow: var(--panel-shadow);
     z-index: 1;
+    -webkit-tap-highlight-color: transparent;
 
     // Animated border overlay using mask composition
     &::after {
@@ -266,6 +267,7 @@
     flex-direction: column;
     flex: 1;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 
     &:focus {
       outline: none;

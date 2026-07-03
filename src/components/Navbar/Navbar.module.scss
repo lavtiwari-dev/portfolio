@@ -222,6 +222,15 @@
     z-index: 999;
   }
 
+  &__backdrop {
+    position: fixed;
+    top: var(--tab-h);
+    left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    z-index: 998;
+  }
+
   &__mobile_tab {
     display: flex;
     align-items: center;

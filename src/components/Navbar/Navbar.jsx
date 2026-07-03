@@ -103,27 +103,36 @@ export default function Navbar({ activeSection, onSectionChange, theme, onToggle
       {/* Mobile dropdown */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            id="mobile-navigation"
-            className={styles.navbar__mobile_menu}
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {tabs.map(t => (
-              <button
-                key={t.id}
-                type="button"
-                className={`${styles.navbar__mobile_tab} ${activeSection === t.id ? styles['navbar__mobile_tab--active'] : ''}`}
-                onClick={() => scrollTo(t.id)}
-                aria-current={activeSection === t.id ? 'location' : undefined}
-              >
-                {t.icon}
-                {t.label}
-              </button>
-            ))}
-          </motion.div>
+          <>
+            <motion.div
+              className={styles.navbar__backdrop}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileOpen(false)}
+            />
+            <motion.div
+              id="mobile-navigation"
+              className={styles.navbar__mobile_menu}
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {tabs.map(t => (
+                <button
+                  key={t.id}
+                  type="button"
+                  className={`${styles.navbar__mobile_tab} ${activeSection === t.id ? styles['navbar__mobile_tab--active'] : ''}`}
+                  onClick={() => scrollTo(t.id)}
+                  aria-current={activeSection === t.id ? 'location' : undefined}
+                >
+                  {t.icon}
+                  {t.label}
+                </button>
+              ))}
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>

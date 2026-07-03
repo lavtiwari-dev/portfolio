@@ -21,7 +21,7 @@ body {
   background-image:
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-  background-size: 50px 50px;
+  background-size: 30px 30px;
   background-position: center;
   color: var(--text);
   font-family: $sans;
@@ -44,6 +44,7 @@ body {
     background: radial-gradient(circle at 50% 0%, var(--glow-color) 0%, transparent 70%);
     pointer-events: none;
     z-index: -1;
+    opacity: 0.2; // globally reduced top gradient glow to keep background dark and readable
   }
 }
 

@@ -61,6 +61,17 @@ export default function Certifications() {
   const [activeCert, setActiveCert] = useState(null);
   const closeButtonRef = useRef(null);
   const triggerRef = useRef(null);
+  const gridRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleScroll = () => {
+    if (!gridRef.current) return;
+    const { scrollLeft, clientWidth } = gridRef.current;
+    const card = gridRef.current.querySelector(`.${styles.certs__card}`);
+    const step = card ? card.getBoundingClientRect().width + 16 : clientWidth - 8;
+    const index = Math.round(scrollLeft / step);
+    setActiveIndex(Math.max(0, Math.min(index, certs.length - 1)));
+  };
 
   // Close lightbox on escape key
   useEffect(() => {
@@ -96,6 +107,8 @@ export default function Certifications() {
         <h2 className="section-title" data-prefix="05">certifications.md</h2>
 
         <motion.div
+          ref={gridRef}
+          onScroll={handleScroll}
           className={styles.certs__grid}
           variants={{ show: { transition: { staggerChildren: 0.12 } } }}
           initial="hidden"
@@ -160,6 +173,16 @@ export default function Certifications() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Mobile Swipe Indicators */}
+        <div className={styles.certs__indicators}>
+          {certs.map((_, idx) => (
+            <div
+              key={idx}
+              className={`${styles.certs__indicator} ${activeIndex === idx ? styles['certs__indicator--active'] : ''}`}
+            />
+          ))}
+        </div>
 
         {/* View-all link removed per request */}
       </div>

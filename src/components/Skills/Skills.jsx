@@ -28,7 +28,7 @@ const groups = [
       {
         name: 'JavaScript',
         icon: <SiJavascript />,
-        color: '#F7DF1E',
+        color: 'var(--yellow)',
         bgHover: 'rgba(247, 223, 30, 0.08)',
         shadow: 'rgba(247, 223, 30, 0.15)'
       }
@@ -42,14 +42,14 @@ const groups = [
       {
         name: 'React.js',
         icon: <FaReact />,
-        color: '#61DAFB',
+        color: 'var(--blue)',
         bgHover: 'rgba(97, 218, 251, 0.08)',
         shadow: 'rgba(97, 218, 251, 0.15)'
       },
       {
         name: 'Tailwind CSS',
         icon: <SiTailwindcss />,
-        color: '#38B2AC',
+        color: 'var(--blue)',
         bgHover: 'rgba(56, 178, 172, 0.08)',
         shadow: 'rgba(56, 178, 172, 0.15)'
       },
@@ -77,14 +77,14 @@ const groups = [
       {
         name: 'Node.js',
         icon: <FaNodeJs />,
-        color: '#339933',
+        color: 'var(--green)',
         bgHover: 'rgba(51, 153, 51, 0.08)',
         shadow: 'rgba(51, 153, 51, 0.15)'
       },
       {
         name: 'Express.js',
         icon: <SiExpress />,
-        color: '#828282',
+        color: 'var(--text)',
         bgHover: 'rgba(130, 130, 130, 0.08)',
         shadow: 'rgba(130, 130, 130, 0.15)'
       },
@@ -105,7 +105,7 @@ const groups = [
       {
         name: 'MongoDB',
         icon: <SiMongodb />,
-        color: '#47A248',
+        color: 'var(--green)',
         bgHover: 'rgba(71, 162, 72, 0.08)',
         shadow: 'rgba(71, 162, 72, 0.15)'
       },
@@ -140,9 +140,9 @@ const groups = [
       {
         name: 'GitHub',
         icon: <FaGithub />,
-        color: '#FFFFFF',
-        bgHover: 'rgba(255, 255, 255, 0.08)',
-        shadow: 'rgba(255, 255, 255, 0.15)'
+        color: 'var(--github-color)',
+        bgHover: 'rgba(36, 41, 46, 0.08)',
+        shadow: 'rgba(36, 41, 46, 0.15)'
       },
       {
         name: 'Postman',
@@ -175,14 +175,14 @@ const groups = [
       {
         name: 'OOP',
         icon: <TbSettingsCog />,
-        color: '#9B59B6',
+        color: 'var(--mauve)',
         bgHover: 'rgba(155, 89, 182, 0.08)',
         shadow: 'rgba(155, 89, 182, 0.15)'
       },
       {
         name: 'DBMS',
         icon: <TbDatabase />,
-        color: '#3498DB',
+        color: 'var(--blue)',
         bgHover: 'rgba(52, 152, 219, 0.08)',
         shadow: 'rgba(52, 152, 219, 0.15)'
       },

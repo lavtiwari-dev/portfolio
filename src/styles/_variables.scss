@@ -1,12 +1,13 @@
 // ─── Dark Theme (default) ───────────────────────────────────────────────────
 :root {
-  --bg: #030303;
-  --bg-alt: #030303;
-  --panel: #111111;
-  --panel-alt: #1a1a1a;
-  --border: #222222;
-  --text: #f8f9fc; // Brighter off-white for maximum legibility
-  --muted: #a6b0cf; // Brighter muted blue-gray for body text contrast
+  --bg: #0f1015;
+  --bg-alt: #0f1015;
+  --panel: #181a24;
+  --panel-alt: #202332;
+  --border: #292d3f;
+  --text: #e2e8f0; // Softer off-white for maximum legibility without glare
+  --muted: #94a3b8; // Beautiful soft blue-gray for body text contrast
+  --portrait-grad: 15, 16, 21; // Match deep slate background
   --blue: #89b4fa;
   --green: #a6e3a1;
   --yellow: #f9e2af;
@@ -47,14 +48,14 @@
 
 // ─── Light Theme ─────────────────────────────────────────────────────────────
 [data-theme='light'] {
-  --bg: #FFFFFF; // Pure white background
-  --bg-alt: #F8FAFC; // Soft grey-blue background for section alternates
-  --panel: #FFFFFF; // Panels stay pure white
-  --panel-alt: #F1F5F9; // Soft panel alternates
-  --border: #E2E8F0; // Very soft, modern slate-200 border
-  --text: #111111; // Darker charcoal-black text for highest readability
-  --muted: #475569; // Darker muted slate text
-
+  --bg: #f8fafc; // Soft slate-50 background to reduce glare
+  --bg-alt: #f1f5f9; // Soft grey-blue background for section alternates
+  --panel: #ffffff; // Panels stay pure white
+  --panel-alt: #e2e8f0; // Soft panel alternates
+  --border: #cbd5e1; // Modern soft border
+  --text: #1e293b; // Soft slate-800 text instead of harsh pure black
+  --muted: #475569; // Slate-600 text
+  --portrait-grad: 248, 250, 252; // Match soft slate-50 background
   --blue: #1d4ed8; // Darker slate blue for readable text
   --green: #15803d; // Darker forest green for readable text
   --yellow: #b45309; // Darker amber for readable text
@@ -65,8 +66,8 @@
   --cursor: #1d4ed8;
 
   // Panel elevation — light mode needs real shadow, not just a bg shift
-  --panel-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.03);
-  --panel-shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.07), 0 8px 20px rgba(0, 0, 0, 0.05);
+  --panel-shadow: 0 4px 12px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
+  --panel-shadow-hover: 0 20px 40px rgba(15, 23, 42, 0.14), 0 8px 16px rgba(15, 23, 42, 0.08);
 
   --social-icon: var(--text);
   --social-shadow: rgba(29, 78, 216, 0.12);
@@ -75,18 +76,18 @@
   --github-bg: rgba(36, 41, 46, 0.04);
   --github-border: rgba(36, 41, 46, 0.1);
 
-  // Terminal block stays intentionally dark — floating "editor" on a light page
-  --term-bg: #121214;
-  --term-bg-alt: #0a0a0c;
-  --term-border: #222225;
-  --term-text: #f8f9fc;
-  --term-muted: #8a8a93;
-  --term-blue: #89b4fa;
-  --term-green: #a6e3a1;
-  --term-yellow: #f9e2af;
-  --term-mauve: #cba6f7;
-  --term-cursor: #89b4fa;
-  --term-shadow: 0 20px 50px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.1);
+  // Themed terminal block for light mode to prevent black sections in light theme
+  --term-bg: #f1f5f9;
+  --term-bg-alt: #e2e8f0;
+  --term-border: #cbd5e1;
+  --term-text: #1e293b;
+  --term-muted: #64748b;
+  --term-blue: #1d4ed8;
+  --term-green: #15803d;
+  --term-yellow: #b45309;
+  --term-mauve: #6d28d9;
+  --term-cursor: #1d4ed8;
+  --term-shadow: 0 20px 50px rgba(15, 23, 42, 0.08), 0 4px 16px rgba(15, 23, 42, 0.04);
 
   // Fine details that get missed
   --selection-bg: rgba(59, 130, 246, 0.12);

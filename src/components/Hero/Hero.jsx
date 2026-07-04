@@ -55,19 +55,9 @@ const TERMINAL_LINES = [
     type: 'property',
     indent: 2,
     segments: [
-      { text: 'dsa_solved', type: 'key' },
-      { text: ': ', type: 'plain' },
-      { text: '"300+ problems solved 🎯"', type: 'val' },
-      { text: ',', type: 'plain' }
-    ]
-  },
-  {
-    type: 'property',
-    indent: 2,
-    segments: [
       { text: 'status', type: 'key' },
       { text: ': ', type: 'plain' },
-      { text: '"actively seeking SDE roles 🚀"', type: 'val' }
+      { text: '"actively seeking SDE roles"', type: 'val' }
     ]
   },
   {

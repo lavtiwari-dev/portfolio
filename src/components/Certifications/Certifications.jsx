@@ -6,17 +6,6 @@ import styles from './Certifications.module.scss';
 
 const certs = [
   {
-    name: '300+ Data Structures & Algorithms Solved',
-    issuer: 'LeetCode, CodeChef & HackerEarth',
-    year: 'Active',
-    link: 'https://leetcode.com',
-    image: '/images/cert-leetcode-dsa.png',
-    monogram: 'DSA',
-    color: '#FFA116',
-    iconBg: 'rgba(255,161,22,0.12)',
-    iconBorder: 'rgba(255,161,22,0.4)',
-  },
-  {
     name: 'GitHub Foundations Certification (GH-900)',
     issuer: 'GitHub',
     year: '2026',

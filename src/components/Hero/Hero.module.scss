@@ -73,8 +73,9 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: $mono;
-    font-size: 14px;
+    font-family: $sans;
+    font-weight: 500;
+    font-size: 13.5px;
     color: var(--green);
     background: color-mix(in srgb, var(--green) 8%, transparent);
     border: 1px solid color-mix(in srgb, var(--green) 20%, transparent);
@@ -92,9 +93,10 @@
   }
 
   &__headline {
-    font-family: $mono;
+    font-family: $sans;
     font-size: clamp(30px, 4.5vw, 60px);
     font-weight: 700;
+    letter-spacing: -1.5px;
     line-height: 1.2;
     color: var(--text);
     margin-bottom: 14px;
@@ -173,49 +175,49 @@
 
       &.github {
         color: var(--text);
-        border-color: rgba(137, 180, 250, 0.2);
+        border-color: color-mix(in srgb, var(--text) 20%, transparent);
 
         &:hover {
           color: var(--accent);
           border-color: var(--accent);
-          background: rgba(137, 180, 250, 0.08);
-          box-shadow: 0 8px 24px rgba(137, 180, 250, 0.25);
+          background: color-mix(in srgb, var(--accent) 8%, transparent);
+          box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 20%, transparent), 0 0 0 1px var(--accent);
         }
       }
 
       &.linkedin {
         color: #0a66c2;
-        border-color: rgba(10, 102, 194, 0.25);
+        border-color: rgba(10, 102, 194, 0.35);
 
         &:hover {
           color: #0a66c2;
           border-color: #0a66c2;
           background: rgba(10, 102, 194, 0.08);
-          box-shadow: 0 8px 24px rgba(10, 102, 194, 0.35);
+          box-shadow: 0 8px 24px rgba(10, 102, 194, 0.25), 0 0 0 1px #0a66c2;
         }
       }
 
       &.twitter {
         color: #1d9bf0;
-        border-color: rgba(29, 155, 240, 0.25);
+        border-color: rgba(29, 155, 240, 0.35);
 
         &:hover {
           color: #1d9bf0;
           border-color: #1d9bf0;
           background: rgba(29, 155, 240, 0.08);
-          box-shadow: 0 8px 24px rgba(29, 155, 240, 0.35);
+          box-shadow: 0 8px 24px rgba(29, 155, 240, 0.25), 0 0 0 1px #1d9bf0;
         }
       }
 
       &.mail {
         color: #ea4335;
-        border-color: rgba(234, 67, 53, 0.25);
+        border-color: rgba(234, 67, 53, 0.35);
 
         &:hover {
           color: #ea4335;
           border-color: #ea4335;
           background: rgba(234, 67, 53, 0.08);
-          box-shadow: 0 8px 24px rgba(234, 67, 53, 0.35);
+          box-shadow: 0 8px 24px rgba(234, 67, 53, 0.25), 0 0 0 1px #ea4335;
         }
       }
     }
@@ -223,6 +225,19 @@
 
   // ── Terminal window ──────────────────────────────────────────────────────
   &__terminal {
+    // Force terminal to remain dark in all modes
+    --term-bg: #121214;
+    --term-bg-alt: #0a0a0c;
+    --term-border: #222225;
+    --term-text: #f8f9fc;
+    --term-muted: #8a8a93;
+    --term-blue: #89b4fa;
+    --term-green: #a6e3a1;
+    --term-yellow: #f9e2af;
+    --term-mauve: #cba6f7;
+    --term-cursor: #89b4fa;
+    --term-shadow: 0 32px 72px rgba(0, 0, 0, 0.45), 0 0 40px rgba(137, 180, 250, 0.05);
+
     width: 100%;
     max-width: 750px;
     background: var(--term-bg);

@@ -2,11 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
   FiArrowUpRight,
-  FiBookOpen,
-  FiBriefcase,
-  FiCode,
   FiDownload,
-  FiMapPin,
 } from 'react-icons/fi';
 import styles from './About.module.scss';
 
@@ -14,19 +10,6 @@ const stats = [
   { value: '300+', label: 'DSA problems', note: 'solved across coding platforms' },
   { value: '4', label: 'Certifications', note: 'across cloud and development' },
   { value: '5+', label: 'Projects', note: 'built from idea to interface' },
-];
-
-const facts = [
-  {
-    label: 'education',
-    value: 'B.Tech in CSE (Expected 2027)',
-    icon: <FiBookOpen />,
-  },
-  {
-    label: 'location',
-    value: 'Bhopal, India · Remote friendly',
-    icon: <FiMapPin />,
-  },
 ];
 const fade = (delay = 0) => ({
   hidden: { opacity: 0, y: 24 },
@@ -75,17 +58,7 @@ export default function About() {
               </p>
             </div>
 
-            <dl className={styles.about__facts}>
-              {facts.map((fact) => (
-                <div className={styles.about__fact} key={fact.label}>
-                  <span className={styles.about__fact_icon} aria-hidden="true">{fact.icon}</span>
-                  <div>
-                    <dt>{fact.label}</dt>
-                    <dd>{fact.value}</dd>
-                  </div>
-                </div>
-              ))}
-            </dl>
+
             <div className={styles.about__actions}>
               <a href="/resume.pdf" className="btn btn--outline" download>
                 <FiDownload /> Download résumé

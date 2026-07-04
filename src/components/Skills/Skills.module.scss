@@ -19,7 +19,7 @@
 
   &__group {
     background: var(--panel);
-    border: 1px solid var(--border);
+    border: 1px solid var(--accent);
     border-radius: var(--radius);
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -39,7 +39,8 @@
     padding: 18px 24px;
     background: var(--panel-alt);
     border-bottom: 1px solid var(--border);
-    font-family: $mono;
+    font-family: $sans;
+    font-weight: 600;
     font-size: 14.5px;
 
     @media (max-width: 600px) {
@@ -91,9 +92,9 @@
     border-radius: 8px;
     border: 1px solid var(--border);
     background: var(--panel-alt);
-    font-family: $mono;
+    font-family: $sans;
     font-size: 13.5px;
-    color: var(--muted);
+    color: color-mix(in srgb, var(--text) 80%, transparent);
     transition: all 0.38s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: default;
 
@@ -109,6 +110,10 @@
       font-size: 15px;
       color: var(--skill-color);
       transition: transform 0.25s ease;
+
+      :global([data-theme='light']) & {
+        color: color-mix(in srgb, var(--skill-color) 80%, var(--text));
+      }
     }
 
     &_name {
@@ -118,7 +123,7 @@
 
     &:hover {
       color: var(--text);
-      border-color: var(--skill-color);
+      border-color: color-mix(in srgb, var(--skill-color) 45%, var(--border));
       background: var(--skill-bg-hover);
       box-shadow: 0 4px 12px var(--skill-shadow);
 

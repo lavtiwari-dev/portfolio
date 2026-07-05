@@ -114,8 +114,8 @@
     }
 
     :global([data-theme='light']) & {
-      border-color: color-mix(in srgb, var(--skill-color) 65%, var(--text));
-      background: color-mix(in srgb, var(--skill-color) 7%, var(--panel));
+      border-color: color-mix(in srgb, var(--skill-color) 30%, var(--panel));
+      background: color-mix(in srgb, var(--skill-color) 10%, var(--panel));
       color: var(--text);
     }
 
@@ -131,13 +131,18 @@
       }
 
       :global([data-theme='light']) & {
-        color: color-mix(in srgb, var(--skill-color) 65%, var(--text));
+        color: color-mix(in srgb, var(--skill-color) 45%, var(--text));
       }
     }
 
     &_name {
       color: var(--text);
       font-weight: 500;
+
+      :global([data-theme='light']) & {
+        color: #000000;
+        font-weight: 600;
+      }
     }
 
     &:hover {
@@ -147,8 +152,9 @@
       box-shadow: 0 4px 12px var(--skill-shadow);
 
       :global([data-theme='light']) & {
-        border-color: color-mix(in srgb, var(--skill-color) 65%, var(--text));
-        background: color-mix(in srgb, var(--skill-color) 15%, var(--panel));
+        border-color: color-mix(in srgb, var(--skill-color) 45%, var(--panel));
+        background: color-mix(in srgb, var(--skill-color) 18%, var(--panel));
+        box-shadow: 0 4px 12px color-mix(in srgb, var(--skill-color) 15%, transparent);
       }
 
       .skills__pill_icon {

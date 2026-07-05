@@ -42,63 +42,63 @@
   --gutter-w: 48px;
   --transition: 0.38s cubic-bezier(0.16, 1, 0.3, 1);
 
-  --grid-color: rgba(137, 180, 250, 0.02);
+  --grid-color: rgba(255, 255, 255, 0.012);
   --glow-color: rgba(137, 180, 250, 0.08);
 }
 
 // ─── Light Theme ─────────────────────────────────────────────────────────────
 [data-theme='light'] {
-  --bg: #f8fafc; // Soft slate-50 background to reduce glare
-  --bg-alt: #f1f5f9; // Soft grey-blue background for section alternates
+  --bg: #f1f5f9; // Soft slate-100 background to reduce glare (was #f8fafc)
+  --bg-alt: #e2e8f0; // Soft slate-200 background for section alternates (was #f1f5f9)
   --panel: #ffffff; // Panels stay pure white
-  --panel-alt: #e2e8f0; // Soft panel alternates
-  --border: #cbd5e1; // Modern soft border
-  --text: #1e293b; // Soft slate-800 text instead of harsh pure black
-  --muted: #475569; // Slate-600 text
-  --portrait-grad: 248, 250, 252; // Match soft slate-50 background
-  --blue: #1d4ed8; // Darker slate blue for readable text
-  --green: #15803d; // Darker forest green for readable text
-  --yellow: #b45309; // Darker amber for readable text
-  --pink: #be185d; // Darker pink for readable text
-  --mauve: #6d28d9; // Darker purple/mauve for readable text
-  --peach: #c2410c; // Darker orange/peach for readable text
-  --accent: #1d4ed8; // Clean readable blue accent
-  --cursor: #1d4ed8;
+  --panel-alt: #cbd5e1; // Soft panel alternates (was #e2e8f0)
+  --border: #94a3b8; // Modern soft border (was #cbd5e1)
+  --text: #020617; // Slate-955 (was #1e293b - made it darker slate, almost black)
+  --muted: #334155; // Slate-700 text (was #475569 - made it darker)
+  --portrait-grad: 241, 245, 249; // Match soft slate-100 background (was 248, 250, 252)
+  --blue: #1e3a8a; // Darker slate blue for readable text (was #1d4ed8)
+  --green: #14532d; // Darker forest green for readable text (was #15803d)
+  --yellow: #78350f; // Darker amber for readable text (was #b45309)
+  --pink: #831843; // Darker pink for readable text (was #be185d)
+  --mauve: #4c1d95; // Darker purple/mauve for readable text (was #6d28d9)
+  --peach: #7c2d12; // Darker orange/peach for readable text (was #c2410c)
+  --accent: #1e40af; // Clean readable blue accent (was #1d4ed8)
+  --cursor: #1e40af;
 
   // Panel elevation — light mode needs real shadow, not just a bg shift
-  --panel-shadow: 0 4px 12px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
-  --panel-shadow-hover: 0 20px 40px rgba(15, 23, 42, 0.14), 0 8px 16px rgba(15, 23, 42, 0.08);
+  --panel-shadow: 0 4px 12px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.05);
+  --panel-shadow-hover: 0 20px 40px rgba(15, 23, 42, 0.16), 0 8px 16px rgba(15, 23, 42, 0.1);
 
   --social-icon: var(--text);
-  --social-shadow: rgba(29, 78, 216, 0.12);
+  --social-shadow: rgba(30, 64, 175, 0.15);
 
-  --github-color: #24292e;
-  --github-bg: rgba(36, 41, 46, 0.04);
-  --github-border: rgba(36, 41, 46, 0.1);
+  --github-color: #0f172a; // Slate-900 (was #24292e)
+  --github-bg: rgba(15, 23, 42, 0.06);
+  --github-border: rgba(15, 23, 42, 0.15);
 
   // Themed terminal block for light mode to prevent black sections in light theme
-  --term-bg: #f1f5f9;
-  --term-bg-alt: #e2e8f0;
-  --term-border: #cbd5e1;
-  --term-text: #1e293b;
-  --term-muted: #64748b;
-  --term-blue: #1d4ed8;
-  --term-green: #15803d;
-  --term-yellow: #b45309;
-  --term-mauve: #6d28d9;
-  --term-cursor: #1d4ed8;
-  --term-shadow: 0 20px 50px rgba(15, 23, 42, 0.08), 0 4px 16px rgba(15, 23, 42, 0.04);
+  --term-bg: #e2e8f0; // Darker slate-200 (was #f1f5f9)
+  --term-bg-alt: #cbd5e1; // Darker slate-300 (was #e2e8f0)
+  --term-border: #94a3b8; // Darker border (was #cbd5e1)
+  --term-text: #020617; // Darker text (was #1e293b)
+  --term-muted: #475569; // Darker muted (was #64748b)
+  --term-blue: #1e3a8a;
+  --term-green: #14532d;
+  --term-yellow: #78350f;
+  --term-mauve: #4c1d95;
+  --term-cursor: #1e40af;
+  --term-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 4px 16px rgba(15, 23, 42, 0.06);
 
   // Fine details that get missed
-  --selection-bg: rgba(59, 130, 246, 0.12);
-  --selection-text: #2563eb;
-  --scrollbar-thumb: #cbd5e1;
-  --scrollbar-track: #f1f5f9;
-  --code-inline-bg: #f1f5f9;
-  --link-hover: #1d4ed8;
+  --selection-bg: rgba(30, 64, 175, 0.15);
+  --selection-text: #1e40af;
+  --scrollbar-thumb: #94a3b8; // Darker scrollbar (was #cbd5e1)
+  --scrollbar-track: #e2e8f0; // Darker scrollbar track (was #f1f5f9)
+  --code-inline-bg: #e2e8f0; // Darker inline code bg (was #f1f5f9)
+  --link-hover: #1e40af;
 
-  --grid-color: rgba(59, 130, 246, 0.02);
-  --glow-color: rgba(59, 130, 246, 0.05);
+  --grid-color: rgba(15, 23, 42, 0.015);
+  --glow-color: rgba(30, 64, 175, 0.06);
 }
 
 // ─── SCSS vars (re-export for convenience) ────────────────────────────────────

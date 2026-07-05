@@ -21,13 +21,11 @@
       top: 10px;
       bottom: 10px;
       width: 4px;
-      background: linear-gradient(
-        to bottom,
-        var(--border),
-        var(--accent) 15%,
-        var(--accent) 85%,
-        var(--border)
-      );
+      background: linear-gradient(to bottom,
+          var(--border),
+          var(--accent) 15%,
+          var(--accent) 85%,
+          var(--border));
       transform: translateX(-50%);
       z-index: 1;
     }
@@ -89,7 +87,7 @@
 
     @media (max-width: 768px) {
       flex-direction: row !important;
-      
+
       .education__time_label {
         display: none !important;
       }
@@ -193,15 +191,21 @@
     padding: 28px 36px;
     box-shadow: var(--panel-shadow);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
+
+    :global([data-theme='light']) & {
+      border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
+    }
 
     // Glowing border accent matching other panels
     &::before {
       content: '';
       position: absolute;
-      left: 0; top: 0; bottom: 0;
+      left: 0;
+      top: 0;
+      bottom: 0;
       width: 3px;
       background: var(--accent);
       border-radius: 4px 0 0 4px;
@@ -212,7 +216,12 @@
     &:hover {
       border-color: var(--accent);
       box-shadow: var(--panel-shadow-hover), 0 0 0 1px var(--accent);
-      
+
+      :global([data-theme='light']) & {
+        border-color: var(--accent);
+        box-shadow: var(--panel-shadow-hover);
+      }
+
       &::before {
         opacity: 1;
       }
@@ -238,24 +247,42 @@
   &__item--left &__card {
     &:hover {
       transform: translateX(-6px);
+
+      &::after {
+        border-color: transparent transparent transparent var(--accent);
+      }
     }
 
     &::after {
       right: -10px;
       border-width: 8px 0 8px 10px;
       border-color: transparent transparent transparent var(--border);
+      transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+      :global([data-theme='light']) & {
+        border-color: transparent transparent transparent color-mix(in srgb, var(--accent) 60%, var(--border));
+      }
     }
   }
 
   &__item--right &__card {
     &:hover {
       transform: translateX(6px);
+
+      &::after {
+        border-color: transparent var(--accent) transparent transparent;
+      }
     }
 
     &::after {
       left: -10px;
       border-width: 8px 10px 8px 0;
       border-color: transparent var(--border) transparent transparent;
+      transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+      :global([data-theme='light']) & {
+        border-color: transparent color-mix(in srgb, var(--accent) 60%, var(--border)) transparent transparent;
+      }
     }
   }
 
@@ -330,19 +357,24 @@
   0% {
     box-shadow: 0 0 0 0 rgba(137, 180, 250, 0.4);
   }
+
   70% {
     box-shadow: 0 0 0 6px rgba(137, 180, 250, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(137, 180, 250, 0);
   }
 }
 
 @keyframes mobileActiveCardPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 12px rgba(137, 180, 250, 0.15);
     border-color: var(--accent);
   }
+
   50% {
     box-shadow: 0 0 20px rgba(137, 180, 250, 0.35);
     border-color: var(--green);

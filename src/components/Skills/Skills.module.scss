@@ -25,10 +25,19 @@
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: var(--panel-shadow);
 
+    :global([data-theme='light']) & {
+      border-color: var(--border);
+    }
+
     &:hover {
       border-color: var(--accent);
       box-shadow: var(--panel-shadow-hover), 0 0 0 1px var(--accent);
       transform: translateY(-2px);
+
+      :global([data-theme='light']) & {
+        border-color: var(--border);
+        box-shadow: var(--panel-shadow-hover);
+      }
     }
   }
 
@@ -102,6 +111,17 @@
       padding: 5px 9px;
       font-size: 10.5px;
       gap: 5px;
+
+      :global([data-theme='light']) & {
+        font-size: 12px;
+      }
+    }
+
+    :global([data-theme='light']) & {
+      border-color: color-mix(in srgb, var(--skill-color) 65%, var(--text));
+      background: color-mix(in srgb, var(--skill-color) 7%, var(--panel));
+      color: var(--text);
+      font-size: 15px;
     }
 
     &_icon {
@@ -112,7 +132,8 @@
       transition: transform 0.25s ease;
 
       :global([data-theme='light']) & {
-        color: color-mix(in srgb, var(--skill-color) 80%, var(--text));
+        color: color-mix(in srgb, var(--skill-color) 65%, var(--text));
+        font-size: 17px;
       }
     }
 
@@ -126,6 +147,11 @@
       border-color: color-mix(in srgb, var(--skill-color) 45%, var(--border));
       background: var(--skill-bg-hover);
       box-shadow: 0 4px 12px var(--skill-shadow);
+
+      :global([data-theme='light']) & {
+        border-color: color-mix(in srgb, var(--skill-color) 65%, var(--text));
+        background: color-mix(in srgb, var(--skill-color) 15%, var(--panel));
+      }
 
       .skills__pill_icon {
         transform: scale(1.2) rotate(6deg);

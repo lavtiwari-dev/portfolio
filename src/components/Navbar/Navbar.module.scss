@@ -95,6 +95,10 @@
     justify-content: center;
     min-width: 0;
 
+    :global([data-theme='light']) & {
+      opacity: 0.95;
+    }
+
     &_icon {
       font-size: 11px;
       opacity: 0.75;
@@ -267,6 +271,10 @@
     border-left: 3px solid transparent;
     text-align: left;
     transition: all var(--transition), opacity var(--transition);
+
+    :global([data-theme='light']) & {
+      opacity: 0.95;
+    }
 
     &:hover { color: var(--text); opacity: 1; background: var(--panel-alt); }
     &--active { color: var(--accent); opacity: 1; border-left-color: var(--accent); background: var(--panel-alt); }

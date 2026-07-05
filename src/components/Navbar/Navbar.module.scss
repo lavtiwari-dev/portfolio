@@ -144,7 +144,7 @@
   &__actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     padding: 0 14px;
     border-left: 1px solid var(--border);
     flex-shrink: 0;
@@ -154,6 +154,43 @@
       border-left: none;
       padding: 0;
     }
+  }
+
+  // ── Command palette trigger ────────────────────────────────────────────────
+  &__cmd_btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 28px;
+    padding: 0 8px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 13px;
+    transition: all var(--transition);
+
+    &:hover {
+      color: var(--text);
+      background: var(--panel);
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 760px) {
+      display: none;
+    }
+  }
+
+  &__cmd_kbd {
+    font-family: $mono;
+    font-size: 9.5px;
+    color: var(--muted);
+    background: color-mix(in srgb, var(--text) 6%, transparent);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 4px;
+    pointer-events: none;
   }
 
   &__theme_btn {

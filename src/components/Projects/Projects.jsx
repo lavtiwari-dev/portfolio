@@ -29,6 +29,7 @@ const projects = [
     file: 'waste-chain/index.js',
     desc: 'Full-stack industrial waste exchange platform enabling organic byproduct reuse between organizations.',
     status: 'live',
+    flagship: true,
     stack: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
     demo: '#',
     repo: '#',
@@ -36,6 +37,26 @@ const projects = [
     color: 'var(--green)',
     longDesc: 'WasteChain is an innovative industrial reuse platform created to facilitate structured recycling and waste redistribution between different business entities. It allows organizations to list surplus production materials and negotiate exchanges, lowering operational overhead and building environment-friendly supply chains.',
     metric: 'Full-stack prototype · role-based exchange workflow',
+    caseStudy: {
+      problem: 'Industrial organizations generate significant organic waste with no structured mechanism to exchange it with others who could reuse it as raw material — causing environmental harm and economic loss.',
+      approach: 'Built a full-stack marketplace where producers can list waste and consumers can browse, filter, and negotiate exchanges. Chose MongoDB for flexible waste-type schemas and JWT for secure multi-role auth.',
+      tradeoffs: 'Opted for REST over GraphQL to keep the backend accessible to junior contributors. Used server-side filtering instead of client-side search to reduce payload size — tradeoff is higher API latency on complex queries.',
+      improvements: 'Would add real-time notifications via WebSockets, a recommendation engine matching waste types to historical buyers, and integrate geolocation to optimize logistics cost estimates.',
+      architecture: `  Client (React)
+       │
+       ▼
+  ┌─────────────────────────────┐
+  │  Express REST API (Node.js)  │
+  │  JWT Auth · Role middleware  │
+  └──────────┬──────────────────┘
+             │
+    ┌────────┴─────────┐
+    ▼                  ▼
+ MongoDB Atlas    File Storage
+ (Waste docs,    (Listing images)
+  User models,
+  Exchange logs)`,
+    },
     features: [
       'Built a full-stack platform enabling industrial waste exchange between organizations.',
       'Developed secure RESTful APIs with JWT authentication and role-based access control.',
@@ -67,6 +88,7 @@ const projects = [
     file: 'task-sync/index.ts',
     desc: 'Real-time task board for agile teams featuring drag-and-drop workflow automation.',
     status: 'progress',
+    flagship: true,
     stack: ['React', 'TypeScript', 'Node.js', 'Firebase', 'Framer Motion'],
     demo: '#',
     repo: '#',
@@ -74,6 +96,25 @@ const projects = [
     color: 'var(--yellow)',
     longDesc: 'TaskSync workspace is a productivity platform with instant board synchronisation. It is built to optimize agile workflows by enabling smooth drag-and-drop board cards, real-time board sync, and micro-animations to improve team collaboration and engagement.',
     metric: 'In development · real-time collaboration prototype',
+    caseStudy: {
+      problem: 'Agile teams using spreadsheets or heavyweight tools like Jira face friction with real-time collaboration — changes don\'t sync instantly and drag-and-drop feels sluggish on touch devices.',
+      approach: 'Built a lightweight Kanban board with Firebase Realtime Database for sub-100ms sync. Used React\'s useReducer for predictable state transitions and Framer Motion for gesture-driven drag-and-drop.',
+      tradeoffs: 'Chose Firebase over a custom WebSocket server to accelerate development — tradeoff is vendor lock-in. TypeScript strict mode added 20% more development time upfront but eliminated an entire class of runtime bugs.',
+      improvements: 'Would implement offline-first with IndexedDB + conflict resolution, add AI-powered task prioritization, and extract the drag-and-drop into a reusable open-source library.',
+      architecture: `  Browser A          Browser B
+    │                    │
+    ▼                    ▼
+  ┌──────────────────────────────┐
+  │  React + TypeScript Frontend │
+  │  useReducer · Framer Motion  │
+  └──────────────┬───────────────┘
+                 │
+                 ▼
+  ┌──────────────────────────────┐
+  │  Firebase Realtime Database  │
+  │  Live board sync · Auth      │
+  └──────────────────────────────┘`,
+    },
     features: [
       'Built board synchronization enabling multiple users to collaborate live.',
       'Implemented drag and drop handlers optimized for desktop and touch screen gestures.',
@@ -110,10 +151,25 @@ const fade = { hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } };
 export default function Projects() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.08 });
   const [activeProject, setActiveProject] = useState(null);
+  const [filter, setFilter] = useState('all');
   const closeButtonRef = useRef(null);
   const triggerRef = useRef(null);
   const gridRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const FILTER_OPTIONS = [
+    { value: 'all', label: 'all_files.sh' },
+    { value: 'flagship', label: 'flagships/' },
+    { value: 'live', label: 'live/' },
+    { value: 'progress', label: 'in_progress/' },
+    { value: 'archived', label: 'archived/' }
+  ];
+
+  const filteredProjects = projects.filter(p => {
+    if (filter === 'all') return true;
+    if (filter === 'flagship') return p.flagship;
+    return p.status === filter;
+  });
 
   const handleScroll = () => {
     if (!gridRef.current) return;
@@ -172,6 +228,19 @@ export default function Projects() {
       <div className="container">
         <h2 className="section-title" data-prefix="03">projects/</h2>
 
+        <div className={styles.projects__filters}>
+          {FILTER_OPTIONS.map(opt => (
+            <button
+              key={opt.value}
+              type="button"
+              className={`${styles.projects__filter_btn} ${filter === opt.value ? styles['projects__filter_btn--active'] : ''}`}
+              onClick={() => setFilter(opt.value)}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+
         <motion.div
           ref={gridRef}
           onScroll={handleScroll}
@@ -180,7 +249,7 @@ export default function Projects() {
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
-          {projects.map(p => (
+          {filteredProjects.map(p => (
             <motion.article
               key={p.name}
               className={styles.projects__card}
@@ -207,9 +276,14 @@ export default function Projects() {
                     <FiFile />
                     {p.file}
                   </span>
-                  <span className={`${styles.projects__badge} ${styles[`projects__badge--${p.status}`]}`}>
-                    {statusLabel[p.status]}
-                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    {p.flagship && (
+                      <span className={styles['projects__badge--flagship']}>★ case study</span>
+                    )}
+                    <span className={`${styles.projects__badge} ${styles[`projects__badge--${p.status}`]}`}>
+                      {statusLabel[p.status]}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Preview image */}
@@ -316,7 +390,12 @@ export default function Projects() {
               </div>
 
               <div className={styles['projects__popup-meta']}>
-                <h3 className={styles['projects__popup-title']}>{activeProject.name}</h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                  <h3 className={styles['projects__popup-title']}>{activeProject.name}</h3>
+                  {activeProject.flagship && (
+                    <span className={styles['projects__badge--flagship']} style={{ fontSize: 11 }}>★ flagship</span>
+                  )}
+                </div>
                 <div className={styles.projects__stack} style={{ margin: '8px 0 12px' }}>
                   {activeProject.stack.map(t => <span key={t} className="tag">{t}</span>)}
                 </div>
@@ -330,6 +409,35 @@ export default function Projects() {
                   </div>
                 )}
               </div>
+
+              {/* Flagship case-study deep-dive */}
+              {activeProject.caseStudy && (
+                <div className={styles['projects__case-study']}>
+                  <h4 className={styles['projects__popup-section-title']}>Case Study Deep-Dive</h4>
+                  <div className={styles['projects__case-grid']}>
+                    <div className={styles['projects__case-block']}>
+                      <div className={styles['projects__case-label']}><span>// 01</span> Problem</div>
+                      <p>{activeProject.caseStudy.problem}</p>
+                    </div>
+                    <div className={styles['projects__case-block']}>
+                      <div className={styles['projects__case-label']}><span>// 02</span> Approach</div>
+                      <p>{activeProject.caseStudy.approach}</p>
+                    </div>
+                    <div className={styles['projects__case-block']}>
+                      <div className={styles['projects__case-label']}><span>// 03</span> Tradeoffs</div>
+                      <p>{activeProject.caseStudy.tradeoffs}</p>
+                    </div>
+                    <div className={styles['projects__case-block']}>
+                      <div className={styles['projects__case-label']}><span>// 04</span> What I'd improve</div>
+                      <p>{activeProject.caseStudy.improvements}</p>
+                    </div>
+                  </div>
+                  <div className={styles['projects__arch-diagram']}>
+                    <div className={styles['projects__arch-label']}>Architecture</div>
+                    <pre>{activeProject.caseStudy.architecture}</pre>
+                  </div>
+                </div>
+              )}
 
               <div>
                 <h4 className={styles['projects__popup-section-title']}>Technical Features</h4>

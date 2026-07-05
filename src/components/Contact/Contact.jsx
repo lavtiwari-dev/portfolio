@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FiMail, FiPhone, FiMapPin, FiCopy, FiCheck, FiSend } from 'react-icons/fi';
+import { FiMail, FiPhone, FiMapPin, FiCopy, FiCheck, FiSend, FiGithub, FiLinkedin } from 'react-icons/fi';
 import styles from './Contact.module.scss';
 
 const EMAIL = 'lavtiwari.dev@gmail.com';
@@ -73,7 +73,7 @@ export default function Contact() {
   return (
     <section id="contact" className={`section ${styles.contact}`} ref={ref}>
       <div className="container">
-        <h2 className="section-title" data-prefix="07">contact.sh</h2>
+        <h2 className="section-title" data-prefix="08">contact.sh</h2>
         <div className={styles.contact__grid}>
 
           {/* Left */}
@@ -128,6 +128,28 @@ export default function Contact() {
                 <div className={styles.label}>location</div>
                 <div className={styles.value}>Bhopal, India · remote-friendly 🌏</div>
               </div>
+            </div>
+
+            {/* Social Links */}
+            <div className={styles.contact__socials}>
+              <a
+                href="https://github.com/lavtiwari-dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contact__social_link}
+                aria-label="GitHub Profile"
+              >
+                <FiGithub /> <span>GitHub</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/lavtiwaridev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contact__social_link}
+                aria-label="LinkedIn Profile"
+              >
+                <FiLinkedin /> <span>LinkedIn</span>
+              </a>
             </div>
           </motion.div>
 

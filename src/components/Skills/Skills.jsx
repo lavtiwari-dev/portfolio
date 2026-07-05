@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
-  FaJava, FaReact, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaGithub, FaDatabase 
+  FaJava, FaReact, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaGithub, FaDatabase, FaAws
 } from 'react-icons/fa';
 import { 
-  SiJavascript, SiTailwindcss, SiExpress, SiMongodb, SiPostman, SiPostgresql
+  SiJavascript, SiTailwindcss, SiExpress, SiMongodb, SiPostman,
+  SiDocker, SiKubernetes
 } from 'react-icons/si';
 import { VscCode } from 'react-icons/vsc';
 import { DiMysql } from 'react-icons/di';
@@ -22,15 +23,13 @@ const groups = [
         name: 'Java',
         icon: <FaJava />,
         color: '#E76F51',
-        bgHover: 'rgba(231, 111, 81, 0.08)',
-        shadow: 'rgba(231, 111, 81, 0.15)'
+        level: 'Proficient'
       },
       {
         name: 'JavaScript',
         icon: <SiJavascript />,
         color: 'var(--yellow)',
-        bgHover: 'rgba(247, 223, 30, 0.08)',
-        shadow: 'rgba(247, 223, 30, 0.15)'
+        level: 'Proficient'
       }
     ],
   },
@@ -43,29 +42,25 @@ const groups = [
         name: 'React.js',
         icon: <FaReact />,
         color: 'var(--blue)',
-        bgHover: 'rgba(97, 218, 251, 0.08)',
-        shadow: 'rgba(97, 218, 251, 0.15)'
+        level: 'Proficient'
       },
       {
         name: 'Tailwind CSS',
         icon: <SiTailwindcss />,
         color: 'var(--blue)',
-        bgHover: 'rgba(56, 178, 172, 0.08)',
-        shadow: 'rgba(56, 178, 172, 0.15)'
+        level: 'Proficient'
       },
       {
         name: 'HTML5',
         icon: <FaHtml5 />,
         color: '#E34F26',
-        bgHover: 'rgba(227, 79, 38, 0.08)',
-        shadow: 'rgba(227, 79, 38, 0.15)'
+        level: 'Proficient'
       },
       {
         name: 'CSS3',
         icon: <FaCss3Alt />,
         color: '#1572B6',
-        bgHover: 'rgba(21, 114, 182, 0.08)',
-        shadow: 'rgba(21, 114, 182, 0.15)'
+        level: 'Proficient'
       }
     ],
   },
@@ -78,22 +73,19 @@ const groups = [
         name: 'Node.js',
         icon: <FaNodeJs />,
         color: 'var(--green)',
-        bgHover: 'rgba(51, 153, 51, 0.08)',
-        shadow: 'rgba(51, 153, 51, 0.15)'
+        level: 'Proficient'
       },
       {
         name: 'Express.js',
         icon: <SiExpress />,
         color: 'var(--text)',
-        bgHover: 'rgba(130, 130, 130, 0.08)',
-        shadow: 'rgba(130, 130, 130, 0.15)'
+        level: 'Proficient'
       },
       {
         name: 'RESTful APIs',
         icon: <TbTerminal />,
         color: '#FF6C37',
-        bgHover: 'rgba(255, 108, 55, 0.08)',
-        shadow: 'rgba(255, 108, 55, 0.15)'
+        level: 'Proficient'
       }
     ],
   },
@@ -106,22 +98,13 @@ const groups = [
         name: 'MongoDB',
         icon: <SiMongodb />,
         color: 'var(--green)',
-        bgHover: 'rgba(71, 162, 72, 0.08)',
-        shadow: 'rgba(71, 162, 72, 0.15)'
+        level: 'Proficient'
       },
       {
         name: 'MySQL',
         icon: <DiMysql />,
         color: '#4479A1',
-        bgHover: 'rgba(68, 121, 161, 0.08)',
-        shadow: 'rgba(68, 121, 161, 0.15)'
-      },
-      {
-        name: 'PostgreSQL',
-        icon: <SiPostgresql />,
-        color: '#336791',
-        bgHover: 'rgba(51, 103, 145, 0.08)',
-        shadow: 'rgba(51, 103, 145, 0.15)'
+        level: 'Familiar'
       }
     ],
   },
@@ -134,29 +117,25 @@ const groups = [
         name: 'Git',
         icon: <FaGitAlt />,
         color: '#F05032',
-        bgHover: 'rgba(240, 80, 50, 0.08)',
-        shadow: 'rgba(240, 80, 50, 0.15)'
+        level: 'Proficient'
       },
       {
         name: 'GitHub',
         icon: <FaGithub />,
         color: 'var(--github-color)',
-        bgHover: 'rgba(36, 41, 46, 0.08)',
-        shadow: 'rgba(36, 41, 46, 0.15)'
+        level: 'Proficient'
       },
       {
         name: 'Postman',
         icon: <SiPostman />,
         color: '#FF6C37',
-        bgHover: 'rgba(255, 108, 55, 0.08)',
-        shadow: 'rgba(255, 108, 55, 0.15)'
+        level: 'Proficient'
       },
       {
         name: 'VS Code',
         icon: <VscCode />,
         color: '#007ACC',
-        bgHover: 'rgba(0, 122, 204, 0.08)',
-        shadow: 'rgba(0, 122, 204, 0.15)'
+        level: 'Proficient'
       }
     ],
   },
@@ -169,32 +148,53 @@ const groups = [
         name: 'Data Structures & Algorithms',
         icon: <TbBinaryTree />,
         color: '#FFA116',
-        bgHover: 'rgba(255, 161, 22, 0.08)',
-        shadow: 'rgba(255, 161, 22, 0.15)'
+        level: 'Proficient'
       },
       {
         name: 'OOP',
         icon: <TbSettingsCog />,
         color: 'var(--mauve)',
-        bgHover: 'rgba(155, 89, 182, 0.08)',
-        shadow: 'rgba(155, 89, 182, 0.15)'
+        level: 'Proficient'
       },
       {
         name: 'DBMS',
         icon: <TbDatabase />,
         color: 'var(--blue)',
-        bgHover: 'rgba(52, 152, 219, 0.08)',
-        shadow: 'rgba(52, 152, 219, 0.15)'
+        level: 'Proficient'
       },
       {
         name: 'Operating Systems',
         icon: <FaDatabase />,
         color: '#E74C3C',
-        bgHover: 'rgba(231, 76, 60, 0.08)',
-        shadow: 'rgba(231, 76, 60, 0.15)'
+        level: 'Familiar'
       }
     ],
   },
+  {
+    label: 'Currently Learning',
+    file: 'future_focus.log',
+    icon: <TbTerminal />,
+    skills: [
+      {
+        name: 'Docker',
+        icon: <SiDocker />,
+        color: '#2496ED',
+        level: 'Learning'
+      },
+      {
+        name: 'AWS Cloud',
+        icon: <FaAws />,
+        color: '#FF9900',
+        level: 'Learning'
+      },
+      {
+        name: 'Kubernetes',
+        icon: <SiKubernetes />,
+        color: '#326CE5',
+        level: 'Learning'
+      }
+    ],
+  }
 ];
 
 const containerVariants = {
@@ -258,6 +258,12 @@ export default function Skills() {
                   >
                     <span className={styles.skills__pill_icon}>{s.icon}</span>
                     <span className={styles.skills__pill_name}>{s.name}</span>
+                    {s.level !== 'Proficient' && (
+                      <>
+                        <span className={styles.skills__pill_dot} />
+                        <span className={styles.skills__pill_level}>{s.level}</span>
+                      </>
+                    )}
                   </motion.span>
                 ))}
               </div>

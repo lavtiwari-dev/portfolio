@@ -3,26 +3,30 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   FiCode, FiUser, FiDatabase, FiFolder,
   FiAward, FiBook, FiTerminal, FiMenu, FiX,
-  FiSun, FiMoon
+  FiSun, FiMoon, FiMessageSquare, FiCommand
 } from 'react-icons/fi';
 import styles from './Navbar.module.scss';
 
 const tabs = [
-  { id: 'hero',           label: 'Lav Kumar',         icon: <FiCode /> },
-  { id: 'about',          label: 'about.js',          icon: <FiUser /> },
-  { id: 'projects',       label: 'projects/',         icon: <FiFolder /> },
-  { id: 'skills',         label: 'skills.json',       icon: <FiDatabase /> },
-  { id: 'certifications', label: 'certifications.md',  icon: <FiAward /> },
-  { id: 'education',      label: 'education.md',      icon: <FiBook /> },
-  { id: 'contact',        label: 'contact.sh',        icon: <FiTerminal /> },
+  { id: 'hero', label: 'Lav Kumar', icon: <FiCode /> },
+  { id: 'about', label: 'about.js', icon: <FiUser /> },
+  { id: 'projects', label: 'projects/', icon: <FiFolder /> },
+  { id: 'skills', label: 'skills.json', icon: <FiDatabase /> },
+  { id: 'certifications', label: 'certifications.md', icon: <FiAward /> },
+  { id: 'education', label: 'education.md', icon: <FiBook /> },
+  { id: 'testimonials', label: 'testimonials/', icon: <FiMessageSquare /> },
+  { id: 'contact', label: 'contact.sh', icon: <FiTerminal /> },
 ];
 
-export default function Navbar({ activeSection, onSectionChange, theme, onToggleTheme }) {
+export default function Navbar({ activeSection, onSectionChange, theme, onToggleTheme, onOpenPalette }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const menuButtonRef = useRef(null);
 
   useEffect(() => {
     if (!mobileOpen) return undefined;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
 
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
@@ -32,14 +36,47 @@ export default function Navbar({ activeSection, onSectionChange, theme, onToggle
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
   }, [mobileOpen]);
 
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    setMobileOpen(false);
-    if (onSectionChange) {
-      onSectionChange(id);
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    if (mobileOpen) {
+      setMobileOpen(false);
+      // Wait for layout/scroll-lock to release before scrolling
+      setTimeout(() => {
+        const isMobile = window.innerWidth <= 760;
+        const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+        // On mobile, offset is 8px (navbar 44px minus section padding 36px)
+        const offset = isMobile ? 8 : 44;
+
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: 'smooth'
+        });
+
+        if (onSectionChange) {
+          onSectionChange(id);
+        }
+      }, 80);
+    } else {
+      const isMobile = window.innerWidth <= 760;
+      const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+      const offset = isMobile ? 8 : 44;
+
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: 'smooth'
+      });
+
+      if (onSectionChange) {
+        onSectionChange(id);
+      }
     }
   };
 
@@ -82,6 +119,19 @@ export default function Navbar({ activeSection, onSectionChange, theme, onToggle
 
       {/* Actions */}
       <div className={styles.navbar__actions}>
+        {/* Command Palette trigger */}
+        <button
+          type="button"
+          className={styles.navbar__cmd_btn}
+          onClick={onOpenPalette}
+          aria-label="Open command palette (Cmd+K)"
+          title="Open command palette"
+          id="cmd-palette-trigger"
+        >
+          <FiCommand />
+          <kbd className={styles.navbar__cmd_kbd}>⌘K</kbd>
+        </button>
+
         <button
           type="button"
           className={styles.navbar__theme_btn}

@@ -323,7 +323,7 @@
   &__popup-content {
     position: relative;
     width: 100%;
-    max-width: 600px;
+    max-width: 720px; // widened for flagship case-study content
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -333,7 +333,7 @@
     flex-direction: column;
     box-shadow: 0 24px 64px rgba(0,0,0,0.8);
     max-height: 90vh;
-    touch-action: auto; // Re-enable touch gestures on the content
+    touch-action: auto;
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -477,6 +477,93 @@
     font-family: $mono;
     font-size: 11px;
     color: var(--muted);
+  }
+
+  // ── Flagship badge ─────────────────────────────────────────────────────────
+  &__badge--flagship {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: $mono;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--yellow) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--yellow) 35%, transparent);
+    color: var(--yellow);
+    white-space: nowrap;
+  }
+
+  // ── Case study deep-dive ───────────────────────────────────────────────────
+  &__case-study {
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+  }
+
+  &__case-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__case-block {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 2px);
+    padding: 14px 16px;
+
+    p {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+  }
+
+  &__case-label {
+    font-family: $mono;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+
+    span {
+      color: var(--mauve);
+      margin-right: 6px;
+    }
+  }
+
+  &__arch-diagram {
+    background: var(--term-bg);
+    border: 1px solid var(--term-border);
+    border-radius: calc(var(--radius) - 2px);
+    overflow: hidden;
+  }
+
+  &__arch-label {
+    font-family: $mono;
+    font-size: 10.5px;
+    color: var(--term-muted);
+    padding: 8px 14px;
+    background: var(--term-bg-alt);
+    border-bottom: 1px solid var(--term-border);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  &__arch-diagram pre {
+    font-family: $mono;
+    font-size: 12px;
+    color: var(--term-green);
+    padding: 14px 18px;
+    overflow-x: auto;
+    line-height: 1.7;
+    white-space: pre;
   }
 
   // ── Dynamic Filters ────────────────────────────────────────────────────────

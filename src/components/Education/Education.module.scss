@@ -173,7 +173,7 @@
     border-color: var(--accent);
     background: color-mix(in srgb, var(--accent) 8%, transparent);
     color: var(--accent);
-    box-shadow: 0 0 12px rgba(137, 180, 250, 0.15);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 15%, transparent);
   }
 
   // Years mobile-only badge
@@ -371,7 +371,7 @@
       border-color: var(--accent);
       background: color-mix(in srgb, var(--accent) 8%, transparent);
       color: var(--accent);
-      box-shadow: 0 0 12px rgba(137, 180, 250, 0.15);
+      box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 15%, transparent);
     }
   }
 }
@@ -379,15 +379,15 @@
 // Keyframes for pulsing
 @keyframes pulseTimelineDot {
   0% {
-    box-shadow: 0 0 0 0 rgba(137, 180, 250, 0.4);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 40%, transparent);
   }
 
   70% {
-    box-shadow: 0 0 0 6px rgba(137, 180, 250, 0);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 0%, transparent);
   }
 
   100% {
-    box-shadow: 0 0 0 0 rgba(137, 180, 250, 0);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent);
   }
 }
 

@@ -1,0 +1,312 @@
+@use '../../styles/variables' as *;
+
+.testimonials {
+  position: relative;
+  background: var(--bg);
+  overflow: hidden;
+
+  // 1. Desktop Static Grid
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+    margin-top: 32px;
+    margin-bottom: 24px;
+
+    @media (max-width: 960px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  // 2. Mobile Slider wrapper
+  &__mobile_slider {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 3vw, 36px);
+    margin: 32px 0 24px;
+    width: 100%;
+  }
+
+  &__frame {
+    flex: 1;
+    max-width: 760px;
+    height: 260px;
+    position: relative;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      height: 275px;
+    }
+
+    @media (max-width: 600px) {
+      height: 295px;
+    }
+
+    @media (max-width: 480px) {
+      height: 335px;
+    }
+  }
+
+  &__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--muted);
+    font-size: 20px;
+    cursor: pointer;
+    transition: all var(--transition);
+    flex-shrink: 0;
+
+    &:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 15%, transparent);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: scale(0.95) translateY(0);
+    }
+
+    @media (max-width: 500px) {
+      width: 36px;
+      height: 36px;
+      font-size: 16px;
+    }
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: var(--border);
+    cursor: pointer;
+    padding: 0;
+    transition: all var(--transition);
+
+    &:hover {
+      background: var(--muted);
+    }
+
+    &--active {
+      background: var(--accent);
+      width: 20px;
+      border-radius: 4px;
+    }
+  }
+
+  // Common styles for both cards
+  &__card_static,
+  &__card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--card-accent, var(--accent));
+    border-radius: var(--radius);
+    padding: clamp(20px, 2.5vw, 28px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+
+    // Glassmorphic inner glow
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--card-accent, var(--accent)) 4%, transparent),
+        transparent 60%
+      );
+      pointer-events: none;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.25),
+        0 0 0 1px color-mix(in srgb, var(--card-accent, var(--accent)) 30%, transparent);
+    }
+
+    [data-theme='light'] & {
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+      &:hover {
+        box-shadow:
+          0 12px 32px rgba(15, 23, 42, 0.12),
+          0 0 0 1px color-mix(in srgb, var(--card-accent, var(--accent)) 40%, transparent);
+      }
+    }
+  }
+
+  &__card {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+
+  &__card_static {
+    position: relative;
+    height: auto;
+    min-height: 250px;
+
+    @media (max-width: 960px) {
+      min-height: 270px;
+    }
+  }
+
+  &__quote_icon {
+    color: var(--card-accent, var(--accent));
+    font-size: 18px;
+    opacity: 0.7;
+  }
+
+  &__quote {
+    font-family: $sans;
+    font-size: clamp(13.5px, 1.5vw, 15px);
+    line-height: 1.75;
+    color: var(--muted);
+    font-style: italic;
+    flex: 1;
+    quotes: none;
+
+    @media (max-width: 480px) {
+      font-size: 12px;
+      line-height: 1.55;
+    }
+  }
+
+  &__quote_mark {
+    font-family: Georgia, serif;
+    font-size: 2em;
+    line-height: 0;
+    vertical-align: -0.45em;
+    color: var(--card-accent, var(--accent));
+    opacity: 0.4;
+    margin: 0 2px;
+    font-style: normal;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+
+    @media (max-width: 480px) {
+      padding-top: 10px;
+      gap: 8px;
+    }
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $mono;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+
+    @media (max-width: 480px) {
+      width: 32px;
+      height: 32px;
+      font-size: 11px;
+    }
+  }
+
+  &__author_info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+
+    strong {
+      font-family: $sans;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+
+      @media (max-width: 480px) {
+        font-size: 12.5px;
+      }
+    }
+
+    span {
+      font-family: $sans;
+      font-size: 12px;
+      color: var(--muted);
+
+      @media (max-width: 480px) {
+        font-size: 11px;
+      }
+    }
+
+    small {
+      font-family: $mono;
+      font-size: 11px;
+      color: var(--card-accent, var(--accent));
+      opacity: 0.7;
+
+      @media (max-width: 480px) {
+        font-size: 9.5px;
+      }
+    }
+  }
+
+  &__terminal_line {
+    font-family: $mono;
+    font-size: 11px;
+  }
+
+  &__comment {
+    color: var(--muted);
+    opacity: 0.5;
+  }
+
+  // Note below the grid
+  &__note {
+    font-family: $mono;
+    font-size: 12px;
+    color: var(--muted);
+    opacity: 0.6;
+    text-align: center;
+    font-style: italic;
+
+    span {
+      color: var(--mauve);
+      font-style: normal;
+    }
+  }
+}

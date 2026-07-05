@@ -9,15 +9,26 @@ import Projects from './components/Projects/Projects';
 import Certifications from './components/Certifications/Certifications';
 import Education from './components/Education/Education';
 import Contact from './components/Contact/Contact';
+import Testimonials from './components/Testimonials/Testimonials';
 import Footer from './components/Footer/Footer';
 import BackToTop from './components/BackToTop/BackToTop';
+import CommandPalette from './components/CommandPalette/CommandPalette';
+import NotFound from './components/NotFound/NotFound';
 import './styles/global.scss';
 
-const SECTIONS = ['hero', 'about', 'projects', 'skills', 'certifications', 'education', 'contact'];
+const SECTIONS = ['hero', 'about', 'projects', 'skills', 'certifications', 'education', 'testimonials', 'contact'];
+
+// Simple 404 detection — check if the current path is not the root
+const is404 = () => {
+  const path = window.location.pathname;
+  return path !== '/' && path !== '/index.html' && !path.endsWith('.pdf');
+};
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const [notFound, setNotFound] = useState(false);
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('theme');
     if (saved) return saved;
@@ -26,6 +37,11 @@ export default function App() {
 
   const lockRef = useRef(false);
   const timeoutRef = useRef(null);
+
+  // Check for 404
+  useEffect(() => {
+    setNotFound(is404());
+  }, []);
 
   // Apply theme
   useEffect(() => {
@@ -37,10 +53,23 @@ export default function App() {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
   }, []);
 
+  // Global keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Cmd+K / Ctrl+K — open command palette
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setPaletteOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   // Handle active section change when tab is clicked
   const handleSectionChange = useCallback((id) => {
     setActiveSection(id);
-    
+
     // Lock scrollspy for 800ms to allow smooth scroll to complete
     lockRef.current = true;
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -55,7 +84,7 @@ export default function App() {
 
     const handleScroll = () => {
       if (lockRef.current) return;
-      
+
       // If we are at the very bottom of the page, force 'contact' active
       const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80;
       if (isAtBottom) {
@@ -78,7 +107,7 @@ export default function App() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     // Set initial active section
     handleScroll();
 
@@ -88,7 +117,15 @@ export default function App() {
     };
   }, [loaded]);
 
-
+  // 404 page
+  if (notFound) {
+    return (
+      <NotFound onGoHome={() => {
+        window.history.pushState({}, '', '/');
+        setNotFound(false);
+      }} />
+    );
+  }
 
   return (
     <>
@@ -102,10 +139,10 @@ export default function App() {
             onSectionChange={handleSectionChange}
             theme={theme}
             onToggleTheme={toggleTheme}
+            onOpenPalette={() => setPaletteOpen(true)}
           />
           <LineGutter activeSection={activeSection} />
 
-          {/* Main content — responsive class for padding */}
           <main id="main-content" className="main-content" tabIndex="-1">
             <Hero onSectionChange={handleSectionChange} />
             <About />
@@ -113,12 +150,19 @@ export default function App() {
             <Skills />
             <Certifications />
             <Education />
+            <Testimonials />
             <Contact />
           </main>
 
           <Footer />
           <BackToTop />
 
+          {/* Global command palette — mounted outside main for z-index isolation */}
+          <CommandPalette
+            isOpen={paletteOpen}
+            onClose={() => setPaletteOpen(false)}
+            onSectionChange={handleSectionChange}
+          />
         </>
       )}
     </>

@@ -73,6 +73,39 @@
     }
   }
 
+  &__socials {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  &__social_link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $mono;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--panel);
+    transition: all var(--transition);
+    text-decoration: none;
+
+    svg {
+      font-size: 14px;
+    }
+
+    &:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 15%, transparent);
+    }
+  }
+
   // ── Right — Terminal form ─────────────────────────────────────────────────
   &__form-wrap {
     background: var(--term-bg);

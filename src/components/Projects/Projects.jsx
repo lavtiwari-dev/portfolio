@@ -14,7 +14,7 @@ const projects = [
     demo: 'https://movie-lens-kappa.vercel.app/',
     repo: 'https://github.com/lavtiwari-dev/movie_lens',
     image: '/images/proj-movielens.png',
-    color: 'var(--peach)',
+    color: 'var(--mauve)',
     longDesc: 'MovieLens is a premium movie discovery and rating web application integrating the OMDb API. It features detailed metadata cards, search autocompletion, popular tags filtering, and interactive watchlist controls with modern aesthetics.',
     metric: 'Live deployment · OMDb API integrations',
     features: [
@@ -71,7 +71,7 @@ const projects = [
     demo: '#',
     repo: '#',
     image: '/images/proj-tasksync.png',
-    color: 'var(--mauve)',
+    color: 'var(--yellow)',
     longDesc: 'TaskSync workspace is a productivity platform with instant board synchronisation. It is built to optimize agile workflows by enabling smooth drag-and-drop board cards, real-time board sync, and micro-animations to improve team collaboration and engagement.',
     metric: 'In development · real-time collaboration prototype',
     features: [

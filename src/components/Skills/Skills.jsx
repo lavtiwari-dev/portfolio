@@ -253,14 +253,7 @@ export default function Skills() {
                     className={styles.skills__pill}
                     variants={pillVariants}
                     style={{
-                      '--skill-color': s.color,
-                      '--skill-bg-hover': s.bgHover,
-                      '--skill-shadow': s.shadow
-                    }}
-                    whileHover={{ 
-                      y: -3,
-                      scale: 1.03,
-                      transition: { duration: 0.2, ease: 'easeOut' }
+                      '--skill-color': s.color
                     }}
                   >
                     <span className={styles.skills__pill_icon}>{s.icon}</span>

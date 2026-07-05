@@ -1,92 +1,124 @@
-# 📚 Personal Portfolio
+# 💻 Developer Portfolio
 
-Welcome to **lav Portfolio**, a sleek, modern personal portfolio built with **React**, **Vite**, and **Framer Motion**. This project showcases certifications, skills, projects, and more, with a premium design that adapts beautifully to every screen size.
+Welcome to **lav Portfolio**—a premium, responsive, developer-centric personal portfolio built with **React**, **Vite**, and **Sass/SCSS**. Featuring a terminal and code-editor themed aesthetic, this portfolio features elegant interactive sections, dynamic theme engines, and high-performance micro-animations powered by **Framer Motion**.
 
 ---
 
-## ✨ Features
-- **Responsive design** – works flawlessly on mobile, tablet, and desktop (container queries for true component‑level responsiveness).
-- **Animated cards** – smooth entry animations using Framer Motion.
-- **Lightbox preview** – click a certification badge to view a larger image.
-- **Dark‑mode first** – elegant dark theme with a light‑theme toggle.
-- **Dynamic typography** – Google‑Font based, modern `Inter` and `JetBrains Mono`.
-- **Highly customizable** – SCSS variables let you tweak colours, spacing, and breakpoints easily.
+## 🚀 Key Features
+
+*   **Dynamic Theme Engine**: Full support for Dark (default) and Light themes. Integrates persistent storage (`localStorage`) and toggles terminal elements, backdrop colors, scrollbars, selection colors, and code block styles.
+*   **Terminal & IDE Aesthetic**: Features file-like tabs, syntax highlighting, line numbers, and developer details mapped directly onto editor-style mock frames.
+*   **Interactive Skills Grid**: Brand-colored skill pills that dynamically adjust backgrounds, borders, hover shadows, and rotation scale in both modes. Utilizes CSS `color-mix` dynamically under the hood.
+*   **Detailed Project Showcases**: Group and filter projects with custom status badges (`live`, `in progress`, `archived`). Clicking projects opens modal lightboxes displaying full descriptions, features list, live demos, repository links, and interactive file preview tabs.
+*   **Timeline Chronology**: Beautiful alternating education timeline with active-card pulsing and hover timeline connectors.
+*   **High Performance & SEO Optimized**: Clean semantic HTML structure, Google Fonts integration (`Inter` and `JetBrains Mono`), Fast Vite asset bundling, and responsive images.
+*   **Responsive Component Architecture**: Standardized container queries (`container-type: inline-size`) and custom breakpoints ensure layout flexibility down to small mobile screen widths.
 
 ---
 
 ## 🛠️ Tech Stack
-- **React 18** (hooks, functional components)
-- **Vite** – fast dev server & bundler
-- **Framer Motion** – animation library
-- **Sass/SCSS** – for modular, maintainable styling
-- **React‑intersection‑observer** – trigger animations on scroll
-- **React‑icons** – clean vector icons
 
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- **Node.js** (v20 or later) with npm
-
-### Installation
-```bash
-# Clone the repo
-git clone https://github.com/lavtiwari-dev/portfolio.git
-cd portfolio
-
-# Install dependencies
-npm install
-```
-
-### Development
-```bash
-npm run dev
-```
-Open `http://localhost:5173` in your browser. The dev server supports hot‑module replacement, so changes appear instantly.
-
-### Build for Production
-```bash
-npm run build
-npm run preview   # preview the production build locally
-```
+| Technology | Purpose | Key Library/Version |
+| :--- | :--- | :--- |
+| **Core Framework** | Component Architecture | React 19 / Vite 8 |
+| **Styling Engine** | Modular variables, utility mixins, themes | Sass/SCSS (`sass`) |
+| **Animations** | Fluid transitions and exit/entry springs | Framer Motion |
+| **Observer API** | Dynamic scroll-linked scroll entry | React Intersection Observer |
+| **Icons** | Developer & Tech icons | React Icons (`fa`, `si`, `vsc`, `fi`, `tb`) |
 
 ---
 
 ## 📂 Project Structure
-```
-po3/
-├─ src/
-│  ├─ components/          # UI components (Certifications, Skills, Projects, …)
-│  │   └─ Certifications/
-│  │       ├─ Certifications.jsx
-│  │       └─ Certifications.module.scss
-│  ├─ styles/               # Global SCSS variables & helpers
-│  ├─ App.jsx                # Root component
-│  └─ main.jsx               # Vite entry point
-├─ public/                  # Static assets (images, favicons)
-└─ README.md                # **You are here**
+
+Here is a look at the portfolio folder structure:
+
+```text
+portfolio/
+├── dist/                     # Optimized production build artifacts
+├── public/                   # Static assets (images, badges, favicon)
+├── src/
+│   ├── components/           # Modular visual components
+│   │   ├── About/            # Bio section & profile image card
+│   │   ├── BackToTop/        # Floating quick scroll button
+│   │   ├── Certifications/   # Lightbox certificates gallery
+│   │   ├── Contact/          # Footer form & links
+│   │   ├── Education/        # Chronological timeline component
+│   │   ├── Footer/           # Copyright & page footer
+│   │   ├── Hero/             # Intro splash page with typing header
+│   │   ├── LineGutter/       # Vertical layout editor guidelines
+│   │   ├── Loader/           # Splash loading terminal animation
+│   │   ├── Navbar/           # Responsive navigation & theme toggles
+│   │   ├── Projects/         # Interactive filtered project portfolio
+│   │   └── Skills/           # Dynamic CSS-colored skill pills grid
+│   ├── styles/               # Global styling setup
+│   │   ├── _variables.scss   # Global SASS colors, font variables, and design tokens
+│   │   └── global.scss       # Global CSS styles and layout resets
+│   ├── App.jsx               # Main React entry component handling themes
+│   ├── main.jsx              # Main React client mount entrypoint
+│   └── index.css             # Main styling entrypoint
+├── index.html                # Application template HTML5 file
+├── package.json              # Dependencies and scripts definitions
+├── vite.config.js            # Vite configuration details
+└── README.md                 # Project documentation
 ```
 
 ---
 
-## 🎨 Design Notes
-- **Container Queries** (`container-type: inline-size`) give each certification card its own responsive context, eliminating layout breakage on unusual screen widths.
-- The **footer** of each card now stacks vertically when the card shrinks below 255 px (max‑width: 255px), ensuring the *Verified* button never overlaps the *Passed* text.
-- The **lightbox close button** is a fixed circular button with a subtle backdrop blur, staying fully accessible on mobile.
+## ⚙️ Getting Started
+
+### Prerequisites
+
+*   **Node.js**: `v20.x` or later
+*   **npm**: `v10.x` or later
+
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/lavtiwari-dev/portfolio.git
+    cd portfolio
+    ```
+
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+
+### Development Server
+
+Start the local development server:
+```bash
+npm run dev
+```
+Open `http://localhost:5174/` (or the port shown in your terminal) to view the application.
+
+### Production Build
+
+To compile and optimize the assets for production deployment:
+```bash
+npm run build
+```
+
+To preview the built assets locally:
+```bash
+npm run preview
+```
+
+---
+
+## 🎨 Styling & Theme Customization
+
+You can easily customize the portfolio's color scheme, fonts, margins, and responsiveness inside:
+👉 `src/styles/_variables.scss`
+
+### Core Theme Variables
+*   **Backgrounds (`--bg`, `--bg-alt`)**: The foundation colors of sections and pages.
+*   **Panels (`--panel`, `--panel-alt`)**: Background color profiles for cards, header blocks, and menus.
+*   **Accents (`--accent`, `--cursor`)**: The highlight colors for buttons, links, and indicators.
+*   **Theme Switch (`[data-theme='light']`)**: Override variables to customize light-theme hues, shadows, selection states, and border parameters.
 
 ---
 
 ## 📜 License
-This project is open‑source. Feel free to fork, remix, or use parts of it in your own portfolio.
 
----
-
-## 🙏 Acknowledgments
-- Icons from **react‑icons**
-- Animations powered by **Framer Motion**
-- Layout inspiration from modern UI/UX patterns (glassmorphism, subtle micro‑animations).
-
----
-
-*Happy coding!*
+This project is open-source and available under the **MIT License**. Feel free to fork, customize, and build upon it to showcase your work!

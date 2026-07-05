@@ -58,10 +58,10 @@
   --portrait-grad: 241, 245, 249; // Match soft slate-100 background (was 248, 250, 252)
   --blue: #1e3a8a; // Darker slate blue for readable text (was #1d4ed8)
   --green: #14532d; // Darker forest green for readable text (was #15803d)
-  --yellow: #78350f; // Darker amber for readable text (was #b45309)
+  --yellow: #b45309; // Rich amber for readable text
   --pink: #831843; // Darker pink for readable text (was #be185d)
   --mauve: #4c1d95; // Darker purple/mauve for readable text (was #6d28d9)
-  --peach: #7c2d12; // Darker orange/peach for readable text (was #c2410c)
+  --peach: #c2410c; // Rich orange/peach for readable text
   --accent: #1e40af; // Clean readable blue accent (was #1d4ed8)
   --cursor: #1e40af;
 
@@ -84,7 +84,7 @@
   --term-muted: #475569; // Darker muted (was #64748b)
   --term-blue: #1e3a8a;
   --term-green: #14532d;
-  --term-yellow: #78350f;
+  --term-yellow: #b45309;
   --term-mauve: #4c1d95;
   --term-cursor: #1e40af;
   --term-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 4px 16px rgba(15, 23, 42, 0.06);

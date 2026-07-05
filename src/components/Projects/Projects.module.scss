@@ -2,6 +2,11 @@
 
 .projects {
   background: var(--bg-alt);
+  --proj-header-bg: var(--panel-alt);
+
+  :global([data-theme='light']) & {
+    --proj-header-bg: #f8fafc;
+  }
 
   &__grid {
     display: grid;
@@ -89,7 +94,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 12px 18px;
-    background: var(--panel-alt);
+    background: var(--proj-header-bg);
     border-bottom: 1px solid var(--border);
 
     @media (max-width: 640px) {
@@ -337,7 +342,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 12px 18px;
-    background: var(--panel-alt);
+    background: var(--proj-header-bg);
     border-bottom: 1px solid var(--border);
   }
 

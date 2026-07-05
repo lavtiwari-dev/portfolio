@@ -5,13 +5,19 @@
   position: relative;
   overflow: hidden;
 
+  --edu-border: color-mix(in srgb, var(--accent) 65%, var(--border));
+
+  :global([data-theme='light']) & {
+    --edu-border: color-mix(in srgb, var(--accent) 95%, var(--border));
+  }
+
   &__timeline {
     position: relative;
     max-width: 1280px;
     margin: 48px auto 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    gap: 48px;
 
     // The vertical line running down the center
     &::before {
@@ -62,7 +68,8 @@
       }
 
       .education__card {
-        width: 50%;
+        width: fit-content;
+        max-width: calc(50% - 48px);
         margin-right: 48px;
       }
     }
@@ -80,7 +87,8 @@
       }
 
       .education__card {
-        width: 50%;
+        width: fit-content;
+        max-width: calc(50% - 48px);
         margin-left: 48px;
       }
     }
@@ -94,6 +102,7 @@
 
       .education__card {
         width: calc(100% - 48px) !important;
+        max-width: none !important;
         margin-left: 48px !important;
         margin-right: 0 !important;
         padding: 16px 18px !important; // More compact card padding on mobile
@@ -186,18 +195,14 @@
   // Card Content
   &__card {
     background: var(--panel);
-    border: 1px solid var(--accent);
+    border: 2px solid var(--edu-border);
     border-radius: var(--radius);
-    padding: 28px 36px;
+    padding: 16px 24px;
     box-shadow: var(--panel-shadow);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
       border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
       box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
-
-    :global([data-theme='light']) & {
-      border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
-    }
 
     // Glowing border accent matching other panels
     &::before {
@@ -256,12 +261,8 @@
     &::after {
       right: -10px;
       border-width: 8px 0 8px 10px;
-      border-color: transparent transparent transparent var(--border);
+      border-color: transparent transparent transparent var(--edu-border);
       transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-
-      :global([data-theme='light']) & {
-        border-color: transparent transparent transparent color-mix(in srgb, var(--accent) 60%, var(--border));
-      }
     }
   }
 
@@ -277,12 +278,8 @@
     &::after {
       left: -10px;
       border-width: 8px 10px 8px 0;
-      border-color: transparent var(--border) transparent transparent;
+      border-color: transparent var(--edu-border) transparent transparent;
       transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-
-      :global([data-theme='light']) & {
-        border-color: transparent color-mix(in srgb, var(--accent) 60%, var(--border)) transparent transparent;
-      }
     }
   }
 
@@ -323,6 +320,18 @@
     }
   }
 
+  &__board {
+    font-family: $sans;
+    font-size: 14px;
+    color: var(--mauve);
+    margin-top: 4px;
+
+    @media (max-width: 768px) {
+      font-size: 11px;
+      margin-top: 2px;
+    }
+  }
+
   &__notes {
     font-size: 14.5px;
     color: var(--muted);
@@ -335,19 +344,34 @@
     }
   }
 
-  // Active / pulsed card styling for first child on mobile (similar to legacy style)
-  @media (max-width: 768px) {
-    &__item:first-child {
-      .education__card {
-        border-color: var(--accent);
-        box-shadow: 0 0 12px rgba(137, 180, 250, 0.15);
-        animation: mobileActiveCardPulse 3s ease-in-out infinite;
-      }
+  // Active / pulsed card styling for first child (default highlight)
+  &__item:first-child {
+    .education__card {
+      border-color: var(--accent);
+      box-shadow: var(--panel-shadow-hover), 0 0 0 1px var(--accent);
+      animation: activeCardPulse 4s ease-in-out infinite;
 
-      .education__dot {
-        border-color: var(--accent);
-        animation: pulseTimelineDot 2s infinite;
+      &::before {
+        opacity: 1;
       }
+    }
+
+    .education__dot {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      animation: pulseTimelineDot 2s infinite;
+
+      .education__dot_inner {
+        background: var(--green);
+        transform: scale(1.2);
+      }
+    }
+
+    .education__time_label span {
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      color: var(--accent);
+      box-shadow: 0 0 12px rgba(137, 180, 250, 0.15);
     }
   }
 }
@@ -367,16 +391,15 @@
   }
 }
 
-@keyframes mobileActiveCardPulse {
-
+@keyframes activeCardPulse {
   0%,
   100% {
-    box-shadow: 0 0 12px rgba(137, 180, 250, 0.15);
+    box-shadow: var(--panel-shadow-hover), 0 0 0 1px var(--accent);
     border-color: var(--accent);
   }
 
   50% {
-    box-shadow: 0 0 20px rgba(137, 180, 250, 0.35);
+    box-shadow: var(--panel-shadow-hover), 0 0 0 2px var(--green);
     border-color: var(--green);
   }
 }

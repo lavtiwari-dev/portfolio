@@ -14,6 +14,7 @@ const projects = [
     demo: 'https://movie-lens-kappa.vercel.app/',
     repo: 'https://github.com/lavtiwari-dev/movie_lens',
     image: '/images/proj-movielens.png',
+    color: 'var(--peach)',
     longDesc: 'MovieLens is a premium movie discovery and rating web application integrating the OMDb API. It features detailed metadata cards, search autocompletion, popular tags filtering, and interactive watchlist controls with modern aesthetics.',
     metric: 'Live deployment · OMDb API integrations',
     features: [
@@ -32,6 +33,7 @@ const projects = [
     demo: '#',
     repo: '#',
     image: '/images/proj-wastechain.png',
+    color: 'var(--green)',
     longDesc: 'WasteChain is an innovative industrial reuse platform created to facilitate structured recycling and waste redistribution between different business entities. It allows organizations to list surplus production materials and negotiate exchanges, lowering operational overhead and building environment-friendly supply chains.',
     metric: 'Full-stack prototype · role-based exchange workflow',
     features: [
@@ -50,6 +52,7 @@ const projects = [
     demo: '#',
     repo: '#',
     image: '/images/proj-hiring-search.png',
+    color: 'var(--blue)',
     longDesc: 'Hiring Search Tool is a boolean-based lookup system customized for recruitment mapping. It queries datasets instantly to search for managers matching target skills, processes candidate attributes, and caches frequently accessed search indexes.',
     metric: 'Boolean search · Firebase-backed data retrieval',
     features: [
@@ -68,6 +71,7 @@ const projects = [
     demo: '#',
     repo: '#',
     image: '/images/proj-tasksync.png',
+    color: 'var(--mauve)',
     longDesc: 'TaskSync workspace is a productivity platform with instant board synchronisation. It is built to optimize agile workflows by enabling smooth drag-and-drop board cards, real-time board sync, and micro-animations to improve team collaboration and engagement.',
     metric: 'In development · real-time collaboration prototype',
     features: [
@@ -86,6 +90,7 @@ const projects = [
     demo: '#',
     repo: '#',
     image: '/images/proj-devnotes.png',
+    color: 'var(--pink)',
     longDesc: 'DevNotes is a high-performance RESTful API backend structured in Go. It handles indexing markdown articles, parsing internal links, and exposing fast search and lookup endpoints.',
     metric: 'Archived backend concept · full-text search design',
     features: [
@@ -180,6 +185,7 @@ export default function Projects() {
               key={p.name}
               className={styles.projects__card}
               variants={fade}
+              style={{ '--proj-color': p.color }}
             >
               <div
                 className={styles.projects__card_inner}

@@ -47,7 +47,7 @@
     flex-direction: column;
     gap: 20px;
     overflow: hidden;
-    box-shadow: var(--panel-shadow);
+    box-shadow: var(--panel-shadow), 0 0 0 1px var(--cert-color, var(--accent));
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
     // Glowing left accent bar (color injected inline)
@@ -76,7 +76,6 @@
     &:hover {
       transform: translateY(-4px);
       box-shadow: var(--panel-shadow-hover), 0 0 0 1px var(--cert-color, var(--accent));
-      border-color: var(--cert-color, var(--accent));
     }
   }
 

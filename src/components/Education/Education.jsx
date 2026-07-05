@@ -10,15 +10,17 @@ const education = [
     gpa: 'CGPA: 7.7',
   },
   {
-    degree: 'Senior Secondary School (BSEB)',
-    institution: 'Gandak High School, Tarwara, Siwan (Bihar)',
-    years: '2021 - 2023',
-  },
-  {
-    degree: 'Secondary School (BSEB)',
-    institution: 'Gandak High School, Tarwara, Siwan (Bihar)',
-    years: '2019 - 2021',
-  },
+  degree: 'Senior Secondary Education (Class XII)',
+  institution: 'Gandak High School, Siwan',
+  board: 'Bihar School Examination Board (BSEB)',
+  years: '2023',
+},
+{
+  degree: 'Secondary Education (Class X)',
+  institution: 'Gandak High School, Siwan',
+  board: 'Bihar School Examination Board (BSEB)',
+  years: '2021',
+},
 ];
 
 const fade = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
@@ -60,6 +62,7 @@ export default function Education() {
                   <span className={styles.years_mobile}>{e.years}</span>
                   {e.gpa && <span className={styles.gpa}>{e.gpa}</span>}
                 </div>
+                {e.board && <div className={styles.education__board}>{e.board}</div>}
                 {e.notes && <p className={styles.education__notes}>{e.notes}</p>}
               </div>
             </motion.div>

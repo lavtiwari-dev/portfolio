@@ -1,9 +1,16 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lav Kumar | Software developer</title>
+    <title>Lav Kumar — Software Engineer</title>
+    <script>
+      (function() {
+        var saved = localStorage.getItem('theme');
+        var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
     <meta name="description" content="Computer Science &amp; Engineering with a strong foundation in Data Structures &amp; Algorithms and hands-on experience building scalable full-stack applications." />
 
     <!-- Preconnect for Google Fonts -->

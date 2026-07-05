@@ -19,7 +19,9 @@ export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'dark';
+    const saved = localStorage.getItem('theme');
+    if (saved) return saved;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   });
 
   const lockRef = useRef(false);

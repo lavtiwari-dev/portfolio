@@ -7,7 +7,7 @@ import styles from './Testimonials.module.scss';
 const testimonials = [
   {
     quote: "Lav consistently demonstrated strong problem-solving ability and a passion for building well-structured systems. His approach to breaking down complex algorithmic problems is methodical and impressive for his level.",
-    name: "Prof. [Name]",
+    name: "Prof. Nitish Kumar",
     role: "Faculty Mentor",
     institution: "CSE Department",
     avatar: "PM",
@@ -15,7 +15,7 @@ const testimonials = [
   },
   {
     quote: "Working with Lav on WasteChain was a great experience. He took ownership of the entire backend architecture, implemented JWT authentication smoothly, and was always focused on clean, maintainable code.",
-    name: "[Teammate Name]",
+    name: "Kundan Sharma",
     role: "Project Collaborator",
     institution: "Team Member · WasteChain",
     avatar: "TC",
@@ -23,7 +23,7 @@ const testimonials = [
   },
   {
     quote: "Lav is one of those developers who doesn't just make things work — he thinks about why things work. His curiosity for system internals and data structures goes well beyond what's expected at the undergraduate level.",
-    name: "[Mentor Name]",
+    name: "Prince Kumar",
     role: "Technical Mentor",
     institution: "Industry Mentor",
     avatar: "MM",

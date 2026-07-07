@@ -2,7 +2,7 @@
 
 .about {
   overflow: hidden;
-  background: color-mix(in srgb, var(--bg-alt) 94%, transparent);
+  background: transparent;
 
   &__grid {
     display: grid;
@@ -359,7 +359,7 @@
       flex-direction: column;
     }
 
-    span {
+    div span {
       color: var(--text);
       font-family: $sans;
       font-size: 12.5px;
@@ -692,7 +692,7 @@
         align-items: center;
       }
 
-      span {
+      div span {
         font-size: 9.5px;
         line-height: 1.25;
       }

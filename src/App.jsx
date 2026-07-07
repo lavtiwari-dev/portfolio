@@ -145,7 +145,7 @@ export default function App() {
 
           <main id="main-content" className="main-content" tabIndex="-1">
             <Hero onSectionChange={handleSectionChange} />
-            <About />
+            <About theme={theme} />
             <Projects />
             <Skills />
             <Certifications />

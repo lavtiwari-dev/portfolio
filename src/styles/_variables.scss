@@ -45,8 +45,12 @@
   --gutter-w: 48px;
   --transition: 0.38s cubic-bezier(0.16, 1, 0.3, 1);
 
-  --grid-color: rgba(255, 255, 255, 0.012);
-  --glow-color: rgba(137, 180, 250, 0.08);
+  --grid-color: rgba(137, 180, 250, 0.08);
+  --glow-color: rgba(137, 180, 250, 0.15);
+  --glow-1: rgba(137, 180, 250, 0.14);
+  --glow-2: rgba(203, 166, 247, 0.11);
+  --selection-bg: rgba(137, 180, 250, 0.25);
+  --selection-text: #89b4fa;
 }
 
 // ─── Light Theme ─────────────────────────────────────────────────────────────
@@ -100,8 +104,10 @@
   --code-inline-bg: #e2e8f0; // Darker inline code bg (was #f1f5f9)
   --link-hover: #1e40af;
 
-  --grid-color: rgba(15, 23, 42, 0.015);
-  --glow-color: rgba(30, 64, 175, 0.06);
+  --grid-color: rgba(30, 64, 175, 0.07);
+  --glow-color: rgba(30, 64, 175, 0.12);
+  --glow-1: rgba(30, 64, 175, 0.07);
+  --glow-2: rgba(76, 29, 149, 0.05);
 }
 
 // ─── SCSS vars (re-export for convenience) ────────────────────────────────────

@@ -1,7 +1,7 @@
 @use '../../styles/variables' as *;
 
 .projects {
-  background: var(--bg-alt);
+  background: transparent;
   --proj-header-bg: var(--panel-alt);
 
   :global([data-theme='light']) & {

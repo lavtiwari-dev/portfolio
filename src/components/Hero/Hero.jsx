@@ -6,73 +6,7 @@ import {
 } from 'react-icons/fi';
 import styles from './Hero.module.scss';
 
-// ── Matrix Rain Canvas ────────────────────────────────────────────────────────
-function MatrixRain() {
-  const canvasRef = useRef(null);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-
-    const CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ0123456789ABCDEFabcdef{}[]<>/\\|=+-_*&^%$#@!?;:.,~`'.split('');
-    const FONT_SIZE = 14;
-    let cols = 0;
-    let drops = [];
-    let animId;
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      cols = Math.floor(canvas.width / FONT_SIZE);
-      drops = Array.from({ length: cols }, () => Math.floor(Math.random() * -50));
-    };
-
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
-
-    const draw = () => {
-      ctx.fillStyle = 'rgba(15,16,21,0.06)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      for (let i = 0; i < drops.length; i++) {
-        const char = CHARS[Math.floor(Math.random() * CHARS.length)];
-        const y = drops[i] * FONT_SIZE;
-
-        // Head char — brighter accent blue
-        if (drops[i] > 0) {
-          ctx.fillStyle = 'rgba(137,180,250,0.85)';
-          ctx.font = `bold ${FONT_SIZE}px "JetBrains Mono", monospace`;
-          ctx.fillText(char, i * FONT_SIZE, y);
-        }
-
-        // Trail — dimmer green
-        if (drops[i] > 1) {
-          ctx.fillStyle = 'rgba(166,227,161,0.22)';
-          ctx.font = `${FONT_SIZE}px "JetBrains Mono", monospace`;
-          ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], i * FONT_SIZE, y - FONT_SIZE);
-        }
-
-        if (y > canvas.height && Math.random() > 0.975) {
-          drops[i] = Math.floor(Math.random() * -30);
-        }
-        drops[i]++;
-      }
-
-      animId = requestAnimationFrame(draw);
-    };
-
-    draw();
-
-    return () => {
-      cancelAnimationFrame(animId);
-      ro.disconnect();
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className={styles['hero__matrix-canvas']} aria-hidden="true" />;
-}
 
 // ── 3D Tilt Hook ──────────────────────────────────────────────────────────────
 function useTilt(strength = 8) {
@@ -336,8 +270,7 @@ export default function Hero({ onSectionChange }) {
 
   return (
     <section id="hero" className={styles.hero}>
-      {/* Matrix rain background */}
-      <MatrixRain />
+
 
       <div className="container">
         <div className={styles.hero__grid}>

@@ -23,11 +23,6 @@ html {
 body {
   position: relative;
   background: var(--bg);
-  background-image:
-    linear-gradient(var(--grid-color) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-  background-size: 45px 45px;
-  background-position: center;
   color: var(--text);
   font-family: $sans;
   font-size: 15px;
@@ -35,21 +30,34 @@ body {
   overflow-x: hidden;
   transition: background var(--transition), color var(--transition);
 
-  @media (max-width: 760px) {
-    background-image: none;
-  }
-
+  // Background floating glowing blobs (behind the frosted glass)
   &::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 700px;
-    background: radial-gradient(circle at 50% 0%, var(--glow-color) 0%, transparent 70%);
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image: 
+      radial-gradient(circle at 15% 15%, var(--glow-1) 0%, transparent 45%),
+      radial-gradient(circle at 85% 40%, var(--glow-2) 0%, transparent 45%),
+      radial-gradient(circle at 25% 75%, var(--glow-1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 85%, var(--glow-2) 0%, transparent 45%);
     pointer-events: none;
+    transition: background-image var(--transition);
+  }
+
+  // Frosted glass grid pane overlay (on top of the blobs, behind the text content)
+  &::after {
+    content: '';
+    position: fixed;
+    inset: 0;
     z-index: -1;
-    opacity: 0.2; // globally reduced top gradient glow to keep background dark and readable
+    background-image: radial-gradient(var(--grid-color) 1.2px, transparent 1.2px);
+    background-size: 24px 24px;
+    background-position: center;
+    backdrop-filter: blur(80px);
+    -webkit-backdrop-filter: blur(80px);
+    pointer-events: none;
+    transition: background-image var(--transition);
   }
 }
 
@@ -163,30 +171,46 @@ a:hover {
 // ─── Section heading ─────────────────────────────────────────────────────────
 .section-title {
   font-family: $sans;
-  font-weight: 600;
-  letter-spacing: -0.5px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   font-size: clamp(22px, 3vw, 30px);
-  color: var(--text);
   margin-bottom: 48px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+
+  // Premium dark metallic text color that feels rich and highly readable
+  color: var(--text);
+  background: linear-gradient(135deg, var(--text) 40%, var(--muted) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
   @media (max-width: 760px) {
-    margin-bottom: 18px;
+    margin-bottom: 24px;
+    gap: 12px;
   }
 
+  // Developer-friendly highlight prefix badge
   &::before {
     content: attr(data-prefix);
-    color: var(--mauve);
-    font-size: 0.8em;
+    font-family: $mono;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    padding: 3px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+    -webkit-text-fill-color: var(--accent); // override the webkit-text-fill-color of parent
   }
 
+  // Premium fading gradient line matching the highlight color
   &::after {
     content: '';
     flex: 1;
     height: 1px;
-    background: var(--border);
+    background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 30%, var(--border)) 0%, transparent 100%);
     margin-left: 16px;
   }
 }

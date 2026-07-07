@@ -44,9 +44,19 @@ const scaleIn = {
   },
 };
 
-export default function About() {
+export default function About({ theme = 'dark' }) {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.12 });
   const [resumeOpen, setResumeOpen] = useState(false);
+
+  const isDark = theme === 'dark';
+  
+  const streakUrl = isDark
+    ? `https://github-readme-streak-stats.herokuapp.com/?user=${GITHUB_USER}&theme=transparent&hide_border=true&stroke=transparent&ring=89b4fa&fire=fab387&currStreakNum=e2e8f0&sideNums=e2e8f0&currStreakLabel=94a3b8&sideLabels=94a3b8&dates=94a3b8&background=00000000`
+    : `https://github-readme-streak-stats.herokuapp.com/?user=${GITHUB_USER}&theme=transparent&hide_border=true&stroke=transparent&ring=1e40af&fire=c2410c&currStreakNum=020617&sideNums=020617&currStreakLabel=334155&sideLabels=334155&dates=475569&background=00000000`;
+
+  const topLangsUrl = isDark
+    ? `https://github-readme-stats.vercel.app/api/top-langs?username=${GITHUB_USER}&layout=compact&theme=transparent&hide_border=true&title_color=89b4fa&text_color=e2e8f0&icon_color=89b4fa&bg_color=00000000&langs_count=6`
+    : `https://github-readme-stats.vercel.app/api/top-langs?username=${GITHUB_USER}&layout=compact&theme=transparent&hide_border=true&title_color=1e40af&text_color=020617&icon_color=1e40af&bg_color=00000000&langs_count=6`;
 
   return (
     <>
@@ -165,7 +175,7 @@ export default function About() {
                   <FiActivity /> Contribution Streak
                 </div>
                 <img
-                  src={`https://github-readme-streak-stats.herokuapp.com/?user=${GITHUB_USER}&theme=transparent&hide_border=true&stroke=transparent&ring=89b4fa&fire=f9e2af&currStreakLabel=89b4fa&dates=94a3b8&background=00000000`}
+                  src={streakUrl}
                   alt="GitHub contribution streak"
                   className={styles.about__github_img}
                   loading="lazy"
@@ -183,7 +193,7 @@ export default function About() {
                   <FiCode /> Top Languages
                 </div>
                 <img
-                  src={`https://github-readme-stats.vercel.app/api/top-langs?username=${GITHUB_USER}&layout=compact&theme=transparent&hide_border=true&title_color=89b4fa&text_color=e2e8f0&bg_color=00000000&langs_count=6`}
+                  src={topLangsUrl}
                   alt="Top programming languages"
                   className={styles.about__github_img}
                   loading="lazy"
@@ -191,32 +201,32 @@ export default function About() {
                 />
                 <div className={styles.about__github_fallback_languages} style={{ display: 'none' }}>
                   <div className={styles.about__github_lang_row}>
-                    <span className={styles.about__github_lang_name}>Java</span>
-                    <div className={styles.about__github_lang_bar_wrapper}>
-                      <div className={styles.about__github_lang_bar} style={{ width: '42%', backgroundColor: 'var(--blue)' }} />
-                    </div>
-                    <span className={styles.about__github_lang_percent}>42%</span>
-                  </div>
-                  <div className={styles.about__github_lang_row}>
                     <span className={styles.about__github_lang_name}>JavaScript</span>
                     <div className={styles.about__github_lang_bar_wrapper}>
-                      <div className={styles.about__github_lang_bar} style={{ width: '38%', backgroundColor: 'var(--green)' }} />
+                      <div className={styles.about__github_lang_bar} style={{ width: '48%', backgroundColor: 'var(--blue)' }} />
                     </div>
-                    <span className={styles.about__github_lang_percent}>38%</span>
+                    <span className={styles.about__github_lang_percent}>48%</span>
+                  </div>
+                  <div className={styles.about__github_lang_row}>
+                    <span className={styles.about__github_lang_name}>SCSS &amp; CSS</span>
+                    <div className={styles.about__github_lang_bar_wrapper}>
+                      <div className={styles.about__github_lang_bar} style={{ width: '32%', backgroundColor: 'var(--green)' }} />
+                    </div>
+                    <span className={styles.about__github_lang_percent}>32%</span>
                   </div>
                   <div className={styles.about__github_lang_row}>
                     <span className={styles.about__github_lang_name}>TypeScript</span>
                     <div className={styles.about__github_lang_bar_wrapper}>
-                      <div className={styles.about__github_lang_bar} style={{ width: '12%', backgroundColor: 'var(--yellow)' }} />
+                      <div className={styles.about__github_lang_bar} style={{ width: '18%', backgroundColor: 'var(--yellow)' }} />
                     </div>
-                    <span className={styles.about__github_lang_percent}>12%</span>
+                    <span className={styles.about__github_lang_percent}>18%</span>
                   </div>
                   <div className={styles.about__github_lang_row}>
-                    <span className={styles.about__github_lang_name}>SCSS &amp; HTML</span>
+                    <span className={styles.about__github_lang_name}>HTML</span>
                     <div className={styles.about__github_lang_bar_wrapper}>
-                      <div className={styles.about__github_lang_bar} style={{ width: '8%', backgroundColor: 'var(--mauve)' }} />
+                      <div className={styles.about__github_lang_bar} style={{ width: '2%', backgroundColor: 'var(--mauve)' }} />
                     </div>
-                    <span className={styles.about__github_lang_percent}>8%</span>
+                    <span className={styles.about__github_lang_percent}>2%</span>
                   </div>
                 </div>
               </div>

@@ -280,7 +280,8 @@ a:hover {
   // Premium dark metallic text color that feels rich and highly readable
   color: var(--text);
   background: linear-gradient(135deg, var(--text) 40%, var(--muted) 100%);
-  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-background-clip: text; 
   -webkit-text-fill-color: transparent;
 
   @media (max-width: 760px) {
